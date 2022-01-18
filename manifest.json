@@ -18,13 +18,25 @@
         "tabs", 
         "history" 
     ], 
+    // 权限申请
+    "permissions":
+    [
+      "contextMenus", // 右键菜单
+      "webRequest", // web请求
+      "storage", // 插件本地存储
+      "http://*/*", // 可以通过executeScript或者insertCSS访问的网站
+      "https://*/*" // 可以通过executeScript或者insertCSS访问的网站
+    ],
+    // 普通页面能够直接访问的插件资源列表，如果不设置是无法直接访问的
+	  "web_accessible_resources": ["/assets/js/jquery-3.6.0.min.js","/editor.md/mdinit.js","/editor.md/editormd.js","/editor.md/examples/full.html"],
     "background":{//background script即插件运行的环境
         "page":"background.html"
         // "scripts": ["js/jquery-1.9.1.min.js","js/background.js"]//数组.chrome会在扩展启动时自动创建一个包含所有指定脚本的页面
     }, 
      "content_scripts": [{  //对页面内容进行操作的脚本
          "matches": ["http://*/*","https://*/*"],  //满足什么条件执行该插件 
-         "js": ["/assets/js/jquery-3.6.0.min.js", "/assets/js/js.js"],   
+         "js": ["/assets/js/jquery-3.6.0.min.js", "/assets/js/content-script.js"],   
+         "css": ["/assets/css/custom.css","/editor.md/css/editormd.css"],
          "run_at": "document_start",  //在document加载时执行该脚本
          "all_frames": true
     }] 

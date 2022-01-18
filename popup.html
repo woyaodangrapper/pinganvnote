@@ -6,7 +6,7 @@
     <script src="/assets/js/jquery-3.6.0.min.js"></script>
 
     <!-- Styles -->
-    <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&display=swap" rel="stylesheet">
+    <!-- <link href="https://fonts.googleapis.com/css?family=Poppins:400,500,700,800&display=swap" rel="stylesheet"> -->
     <link href="/assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
     <link href="/assets/plugins/font-awesome/css/all.min.css" rel="stylesheet">
     <link href="/assets/plugins/perfectscroll/perfect-scrollbar.css" rel="stylesheet">
@@ -20,29 +20,33 @@
     <style>
         body {
             font-family: "微软雅黑";
-            background-color: rgba(230, 230, 230, 0.24);
+            /* background-color: #1f1f1f; */
             /* border-radius:5px */
             /* backdrop-filter: blur(40px); */
         }
         .ppopup-background{
+         
           width: 248px;
           /* height: 360px; */
         }
     </style>
 </head>
-<body>
+<body>  
+  <div class="col-sm-1"><i class="fas fa-cog"></i></div>
+
+  
   <div class="ppopup-background">
-    <div class="card text-center">
-      <div class="card-header card-title">
-        <div class="story"><a href="#"><img src="/fm_58.png" alt=""></a>
-          <div class="story-info"><a href="#"><span class="story-author">Gold </span></a><span class="story-time">笔</span></div>
+    <div class="card text-center" >
+      <div class="card-header card-title" >
+        <div class="story"><a href="#"><img id="open_url_new_tab_github" src="/fm_58.png" alt=""></a>
+          <div class="story-info"><a href="#"><span class="story-author">水 </span></a><span class="story-time">笔</span></div>
         </div>
-        DABAN HEXO
+        DABAN HEXO :D
+       
       </div>
       <div class="card-body">
-        <h5 class="card-title" id="title_url"> title </h5>
-        <p class="card-text" style="font-size: 10px;line-height: 0px;">暂停随笔.</p>
-        <a href="#"  id="popup_close"  class="btn btn-success" style="width: 120px;padding: 4px 20px;box-shadow: 0 1px 3px 0 rgb(54 74 99 / 5%);">关闭</a></div>
+        <figcaption class="blockquote-footer">This foreign language will make the interface very cow penis<cite title="开玩笑的">鲁迅</cite></figcaption>
+      </div>
     </div>
   </div>
     <script type="text/javascript" src="/assets/js/popup.js"></script>

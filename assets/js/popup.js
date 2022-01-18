@@ -1,15 +1,11 @@
-
-$("#popup_close").click(function(){
-    console.log('123123')
-})
-$(document).ready(function(){
-  show_url()
+JQ("#popup_close").click(function () {
  
-})
-function show_url() { 
-  chrome.tabs.getSelected(null, function(tab) { 
-   var currentURL = tab.url; 
-   var domain = currentURL.match(/^[\w-]+:\/{2,}\[?([\w\.:-]+)\]?(?::[0-9]*)?/)[1];
-   $("#title_url").html(domain)//alert(domain); 
-  }); 
-} 
+  
+});
+
+// console.log(chrome)
+// 新标签打开网页
+JQ('#open_url_new_tab_github').click(() => {
+	chrome.tabs.create({url: 'https://github.com/light-come/Chrome-Big'});
+});
+
