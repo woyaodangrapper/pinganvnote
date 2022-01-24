@@ -28,7 +28,21 @@
       "https://*/*" // 可以通过executeScript或者insertCSS访问的网站
     ],
     // 普通页面能够直接访问的插件资源列表，如果不设置是无法直接访问的
-	  "web_accessible_resources": ["/assets/js/jquery-3.6.0.min.js","/editor.md/mdinit.js","/editor.md/editormd.js","/editor.md/examples/full.html"],
+	  "web_accessible_resources": [
+      
+
+      "/assets/js/humane.min.js",
+      "/assets/js/jquery-3.6.0.min.js",
+      "/editor.md/mdinit.js",
+      "/editor.md/editormd.js",
+      "/editor.md/examples/full.html",
+      "/editor.md/lib/codemirror/codemirror.min.css",
+      "/editor.md/lib/codemirror/addon/dialog/dialog.css",
+      "/editor.md/lib/codemirror/addon/search/matchesonscrollbar.css",
+      "/editor.md/lib/codemirror/addon/fold/foldgutter.css",
+      "/editor.md/lib/codemirror/codemirror.min.js"
+    
+    ],
     "background":{//background script即插件运行的环境
         "page":"background.html"
         // "scripts": ["js/jquery-1.9.1.min.js","js/background.js"]//数组.chrome会在扩展启动时自动创建一个包含所有指定脚本的页面

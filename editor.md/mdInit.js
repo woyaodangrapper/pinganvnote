@@ -131,3 +131,52 @@ function sendMessageToContentScriptByEvent(data) {
   hiddenDiv.dispatchEvent(customEvent);
 }
 window.sendMessageToContentScriptByEvent = sendMessageToContentScriptByEvent;
+
+(function () {
+  var script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src  = "/assets/js/humane.min.js";
+  document.getElementsByTagName("head")[0].appendChild(script);
+})();
+
+document.addEventListener("keydown", function (e) {
+  if(e.ctrlKey && e.keyCode==83 ){
+    window.event.returnValue = false
+ 
+
+  let overview_name = "大班随手笔记-每天一篇文章，TS-艾略特为你折腰!"
+    chrome.storage.sync.get(["overview_txt"], function (data) {
+      if(data.overview_txt._config === 999){
+        overview_name = data.overview_txt._txt
+        post(overview_name)
+      }
+    });
+
+   function post(name) {
+      var settings = {
+        "url": "http://localhost:5000/WeatherForecast/set/md",
+        "method": "POST",
+        "timeout": 0,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "data": JSON.stringify({
+          "txt": testEditor.getMarkdown(),
+          "name": name
+        }),
+      };
+      var ajax = $.ajax(settings)
+      ajax.done(function (response) {
+        if(response.code == "0"){
+          humane.baseCls="humane-"+"bigbox"
+          humane.log("保存成功")
+        }
+      })
+      ajax.error(function (jqXHR, textStatus, errorThrown) {
+        /*错误信息处理*/
+        humane.baseCls="humane-"+"bigbox"
+        humane.log("保存失败")
+      });
+   }
+  }
+});

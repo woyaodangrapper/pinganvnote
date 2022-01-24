@@ -17,6 +17,7 @@
   right: 0;
   margin: 0 auto;
   position: fixed;
+  -webkit-box-sizing: initial;
   /* overflow:hidden; */
 }
 .map_content {
