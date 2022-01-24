@@ -4118,6 +4118,7 @@
         css.href   = fileName + ".css";
 
         if(into === "head") {
+            console.log(css)
             document.getElementsByTagName("head")[0].appendChild(css);
         } else {
             document.body.appendChild(css);
@@ -4179,8 +4180,8 @@
     // 使用国外的CDN，加载速度有时会很慢，或者自定义URL
     // You can custom KaTeX load url.
     editormd.katexURL  = {
-        css : "//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min",
-        js  : "//cdnjs.cloudflare.com/ajax/libs/KaTeX/0.3.0/katex.min"
+      css : "/editor.md/examples/css/katex.min",
+      js  : "/editor.md/examples/js/katex.min"
     };
     
     editormd.kaTeXLoaded = false;

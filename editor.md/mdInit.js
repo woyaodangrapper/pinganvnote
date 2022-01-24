@@ -1,13 +1,20 @@
 var testEditor;
+var debug = false
+var uri =  debug ? "http://localhost:5000/" : "http://blog.taoistcore.com:8011/";
+
+
+
 
 JQX(function() {
+
+
     JQX.get('test.md', function(md){
-          // You can custom KaTeX load url.
-        editormd.katexURL  = {
-          css : "/editor.md/examples/css/katex.min",
-          js  : "/editor.md/examples/js/katex.min"
-        };
-        editormd.kaTeXLoaded = false;
+        //   // You can custom KaTeX load url.
+        // editormd.katexURL  = {
+        //   css : "/editor.md/examples/css/katex.min",
+        //   js  : "/editor.md/examples/js/katex.min"
+        // };
+        // editormd.kaTeXLoaded = false;
         testEditor = editormd("test-editormd", {
             width: "90%",
             height: "99%",
@@ -154,7 +161,7 @@ document.addEventListener("keydown", function (e) {
 
    function post(name) {
       var settings = {
-        "url": "http://localhost:5000/WeatherForecast/set/md",
+        "url": uri + "WeatherForecast/set/md",
         "method": "POST",
         "timeout": 0,
         "headers": {
@@ -170,13 +177,23 @@ document.addEventListener("keydown", function (e) {
         if(response.code == "0"){
           humane.baseCls="humane-"+"bigbox"
           humane.log("保存成功")
+
+          runtimeMessageProcessing({bigbox_state : true})
         }
       })
-      ajax.error(function (jqXHR, textStatus, errorThrown) {
+      ajax.fail(function (jqXHR, textStatus, errorThrown) {
         /*错误信息处理*/
         humane.baseCls="humane-"+"bigbox"
         humane.log("保存失败")
       });
    }
   }
+
+  function runtimeMessageProcessing(data) {
+    chrome.storage.sync.set(data, function () {
+      console.log("保存成功！");
+    });
+  }
+
+
 });

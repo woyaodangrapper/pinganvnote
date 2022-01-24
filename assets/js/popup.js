@@ -1,7 +1,3 @@
-JQX("#popup_close").click(function () {
- 
-  
-});
 
 // console.log(chrome)
 // 新标签打开网页

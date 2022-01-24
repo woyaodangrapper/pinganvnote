@@ -2,6 +2,11 @@ var flag = {
   begin: 0,
   change: 0,
 }; //当前未开始
+
+var debug = false
+var uri =  debug ? "http://localhost:5000/" : "http://blog.taoistcore.com:8011/";
+
+
 /*var d = new Date();
 console.log(d.toLocaleString());*/
 setInterval(function () {
@@ -108,14 +113,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
     sendResponse('我是后台，我已收到你的消息：' + JSON.stringify(request));
 
 });
-let uri = "http://localhost:5000/"
+
 
 function setMD(id) {
   JQX(function() {
     JQX("#editormd-view").html(` <textarea style="display:none;" name="test-editormd-markdown-doc">###Hello world!</textarea>   `)
     var testEditormdView;
     
-    JQX.get("http://localhost:5000/WeatherForecast/get/blogs/md/text/" + id, function(markdown) {
+    JQX.get(uri + "WeatherForecast/get/blogs/md/text/" + id, function(markdown) {
         
       testEditormdView = editormd.markdownToHTML("editormd-view", {
           markdown        : markdown ,//+ "\r\n" + JQX("#append-test").text(),
@@ -134,24 +139,11 @@ function setMD(id) {
           sequenceDiagram : true,  // 默认不解析
       });
         
-
     });
 
   });
 }
-function blog_list_initialization() {
-
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    script.src  = "/assets/js/humane.min.js";
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-
-  JQX(".mail-author-address")[0].onclick = function () {
-    window.open(JQX(".mail-author-address").html())
-  }
-   
+function get_md_div() {
   let url = uri+"WeatherForecast/get/md"
   var settings = {
     "url": url,
@@ -204,7 +196,7 @@ function blog_list_initialization() {
             JQX("#container_"+element.id).remove()
           }
         })
-        ajax.error(function (jqXHR, textStatus, errorThrown) {
+        ajax.fail(function (jqXHR, textStatus, errorThrown) {
           /*错误信息处理*/
           humane.baseCls="humane-"+"bigbox"
           humane.log("删除失败")
@@ -216,6 +208,23 @@ function blog_list_initialization() {
     JQX("#card-title").html("等待发布 ("+response.fileList.length+")")
 
   });
+}
+get_md_div()
+
+function blog_list_initialization() {
+
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "/assets/js/humane.min.js";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+
+  JQX(".mail-author-address")[0].onclick = function () {
+    window.open(JQX(".mail-author-address").html())
+  }
+   
+
 
 
   JQX(".btn-danger")[0].onclick = function () {
@@ -246,11 +255,61 @@ function blog_list_initialization() {
        
       }
     })
-    ajax.error(function (jqXHR, textStatus, errorThrown) {
+    
+    ajax.fail(function (jqXHR, textStatus, errorThrown) {
       /*错误信息处理*/
       humane.baseCls="humane-"+"bigbox"
       humane.log("删除失败")
     });
+  }
+  JQX("#ticket-wrap")[0].onclick = function () {
+    var arr = JQX(".toast-container").children("div")
+    
+    for (let index = 0; index < arr.length; index++) {
+      const element = arr[index];
+      var id = element.id.split("_")[1]
+
+      var blogs_state = false
+      if(index >= arr.length-1)blogs_state = true
+
+      let url = uri+"WeatherForecast/blog/post?blogs_state="+blogs_state+"&id="+ id
+      var settings = {
+        "url": url,
+        "method": "POST",
+        "timeout": 0,
+      };
+      
+      var ajax = JQX.ajax(settings)//,"pointer-events":"none"
+      JQX(JQX("#ticket-wrap").children("a")).css({"background-color":"#1f1f1f","cursor":"wait"})
+      JQX("#ticket-wrap")[0].onclick = function () {
+        alert("同步中..")
+      }
+
+      ajax.done(function (response) {
+        if(blogs_state){
+          humane.baseCls="humane-"+"bigbox"
+          humane.log("发布成功")
+          setTimeout(() => {
+            location.reload();
+          }, 3000);
+        }
+      });
+     
+      ajax.catch(function (jqXHR, textStatus, errorThrown) {
+        /*错误信息处理*/
+        if(blogs_state){
+          humane.baseCls="humane-"+"bigbox"
+          humane.log("删除失败")
+
+          setTimeout(() => {
+            location.reload();
+          }, 3000);
+        }
+      });
+
+
+    }
+ 
   }
   
   var settings = {
@@ -303,7 +362,7 @@ function blog_list_initialization() {
           }
         });
         JQX(".btn-danger").attr("id",element.id)
-        console.log("巴比q")
+       
       }
      
     });
@@ -335,3 +394,18 @@ function blog_list_initialization() {
 
 blog_list_initialization()
 
+setInterval(() => {
+  chrome.storage.sync.get(["bigbox_state"], function (data) {
+    if (data.bigbox_state === true) {
+      get_md_div()
+      runtimeMessageProcessing({bigbox_state : false})
+    }
+  });
+}, 1000);
+
+
+function runtimeMessageProcessing(data) {
+  chrome.storage.sync.set(data, function () {
+    console.log("保存成功！");
+  });
+}
