@@ -20,93 +20,93 @@
 
       `);
       var _narrow = `
-      JQ(".chrome-plugin-panel").css('display','block');
+      JQX(".chrome-plugin-panel").css('display','block');
 
 
-      JQ(".overview-logo").css('display','block');
-      JQ("#overview-div").css({left:'11px'});
-      JQ("#overview-div").css({top:'11px'});
-      JQ("#overview-div").css({height:'17px'});
+      JQX(".overview-logo").css('display','block');
+      JQX("#overview-div").css({left:'11px'});
+      JQX("#overview-div").css({top:'11px'});
+      JQX("#overview-div").css({height:'17px'});
       
-      JQ("#overview-div").css({width:'100px'})
-      JQ(".overview-narrow").css('display','none');
-      JQ(".overview-enlarge").css('display','block');
-      JQ("#overview-div").css({ right: "auto"})
-      JQ(".iframe_editormd").css('display','none');
-      JQ("#overview_title").css("display", "none");
-      JQ("#badge_bg_secondary_new").css("display", "none");
+      JQX("#overview-div").css({width:'100px'})
+      JQX(".overview-narrow").css('display','none');
+      JQX(".overview-enlarge").css('display','block');
+      JQX("#overview-div").css({ right: "auto"})
+      JQX(".iframe_editormd").css('display','none');
+      JQX("#overview_title").css("display", "none");
+      JQX("#badge_bg_secondary_new").css("display", "none");
       
       `;
       var narrow = `
-        JQ(".overview-logo").css('display','block');
-        JQ("#overview-div").animate({left:'11px'},100,"linear",function(){});
-        JQ("#overview-div").animate({top:'11px'},100,"linear",function(){});
-        JQ("#overview-div").animate({height:'17px'},100,"linear",function(){});
+        JQX(".overview-logo").css('display','block');
+        JQX("#overview-div").animate({left:'11px'},100,"linear",function(){});
+        JQX("#overview-div").animate({top:'11px'},100,"linear",function(){});
+        JQX("#overview-div").animate({height:'17px'},100,"linear",function(){});
         
-        JQ("#overview-div").animate({width:'100px'},100,"linear",function(){
-          JQ(".overview-narrow").css('display','none');
-          JQ(".overview-enlarge").css('display','block');
-          JQ("#overview-div").css({ right: "auto"})
-          JQ(".iframe_editormd").css('display','none');
-          JQ("#overview_title").css("display", "none");
-          JQ("#badge_bg_secondary_new").css("display", "none");
+        JQX("#overview-div").animate({width:'100px'},100,"linear",function(){
+          JQX(".overview-narrow").css('display','none');
+          JQX(".overview-enlarge").css('display','block');
+          JQX("#overview-div").css({ right: "auto"})
+          JQX(".iframe_editormd").css('display','none');
+          JQX("#overview_title").css("display", "none");
+          JQX("#badge_bg_secondary_new").css("display", "none");
         });
         
       `;
 
       var _enlarge = `
-        JQ(".chrome-plugin-panel").css('display','block');
+        JQX(".chrome-plugin-panel").css('display','block');
 
-        JQ(".overview-logo").css('display','none');
-        JQ("#overview-div").css({right:'0px'});
-        JQ("#overview-div").css({ bottom: "auto"})
-        JQ("#overview-div").css({ left: "0px"})
-        JQ("#overview-div").css({top:'61px'});
+        JQX(".overview-logo").css('display','none');
+        JQX("#overview-div").css({right:'0px'});
+        JQX("#overview-div").css({ bottom: "auto"})
+        JQX("#overview-div").css({ left: "0px"})
+        JQX("#overview-div").css({top:'61px'});
 
-        JQ("#overview-div").css({height:'85%'});
-        JQ("#overview-div").css({width:'94%'})
-        JQ(".overview-narrow").css('display','block');
-        JQ(".overview-enlarge").css('display','none');
-        JQ(".iframe_editormd").css('display','block');
-        JQ("#overview_title").css("display", "block");
-        JQ("#badge_bg_secondary_new").css("display", "block");
+        JQX("#overview-div").css({height:'85%'});
+        JQX("#overview-div").css({width:'94%'})
+        JQX(".overview-narrow").css('display','block');
+        JQX(".overview-enlarge").css('display','none');
+        JQX(".iframe_editormd").css('display','block');
+        JQX("#overview_title").css("display", "block");
+        JQX("#badge_bg_secondary_new").css("display", "block");
       `;
       var enlarge = `
-        JQ(".overview-logo").css('display','none');
-        JQ("#overview-div").animate({right:'0px'},100,"linear",function(){
-          JQ("#overview-div").css({ bottom: "auto"})
-          JQ("#overview-div").css({ left: "0px"})
+        JQX(".overview-logo").css('display','none');
+        JQX("#overview-div").animate({right:'0px'},100,"linear",function(){
+          JQX("#overview-div").css({ bottom: "auto"})
+          JQX("#overview-div").css({ left: "0px"})
         });
       
-        JQ("#overview-div").animate({top:'61px'},100,"linear",function(){
+        JQX("#overview-div").animate({top:'61px'},100,"linear",function(){
         });
 
-        JQ("#overview-div").animate({height:'85%'},100,"linear",function(){
+        JQX("#overview-div").animate({height:'85%'},100,"linear",function(){
           
         });
-        JQ("#overview-div").animate({width:'94%'},100,"linear",function(){
-          JQ(".overview-narrow").css('display','block');
-          JQ(".overview-enlarge").css('display','none');
-          JQ(".iframe_editormd").css('display','block');
-          JQ("#overview_title").css("display", "block");
-          JQ("#badge_bg_secondary_new").css("display", "block");
+        JQX("#overview-div").animate({width:'94%'},100,"linear",function(){
+          JQX(".overview-narrow").css('display','block');
+          JQX(".overview-enlarge").css('display','none');
+          JQX(".iframe_editormd").css('display','block');
+          JQX("#overview_title").css("display", "block");
+          JQX("#badge_bg_secondary_new").css("display", "block");
         });
       `;
       injectCustomJs("/assets/js/jquery-3.6.0.min.js", function () {
         addCustomjsText(
-          `JQ(".overview-close").click(function () {
-          JQ("#overview-div").animate({opacity:0},100,"linear",function(){
+          `JQX(".overview-close").click(function () {
+          JQX("#overview-div").animate({opacity:0},100,"linear",function(){
             sendMessageToContentScriptByEvent(JSON.stringify({idN : "overview","_config":2}))
-            JQ("#overview-div").remove();
+            JQX("#overview-div").remove();
           });
         })
-        JQ(".overview-narrow").click(function () {
+        JQX(".overview-narrow").click(function () {
           sendMessageToContentScriptByEvent(JSON.stringify({idN : "overview","_config":1}))
           ` +
             narrow +
             `
         })
-        JQ(".overview-enlarge").click(function () {
+        JQX(".overview-enlarge").click(function () {
           sendMessageToContentScriptByEvent(JSON.stringify({idN : "overview","_config":0}))
           ` +
             enlarge +
@@ -115,12 +115,12 @@
         );
         //文本编辑
         addCustomjsText(`
-          JQ(function () {
+          JQX(function () {
             //获取class为caname的元素
-            JQ("#overview_title").click(function () {
-              var td = JQ(this);
+            JQX("#overview_title").click(function () {
+              var td = JQX(this);
               var txt = td.text();
-              var input = JQ("<input style='text-align:center;font-size: 1.2em; width: 100%;padding: 7px;border-radius: 25px;color: #171717;line-height: 0;' class='title'  type='text'value='" + txt + "'/>");
+              var input = JQX("<input style='text-align:center;font-size: 1.2em; width: 100%;padding: 7px;border-radius: 25px;color: #171717;line-height: 0;' class='title'  type='text'value='" + txt + "'/>");
               td.html(input);
               input.click(function () {
                 return false;
@@ -129,7 +129,7 @@
               input.trigger("focus");
               //文本框失去焦点后提交内容，重新变为文本
               input.blur(function () {
-                var newtxt = JQ(this).val();
+                var newtxt = JQX(this).val();
                 //判断文本有没有修改
                 if (newtxt != txt) {
                   td.html(newtxt);
@@ -151,13 +151,13 @@
               if (overview_webkit_state != data.overview_webkit._config) {
                 overview_webkit_state = data.overview_webkit._config;
                 console.log(overview_webkit_state, data.overview_webkit._config);
-                if (JQ("#overview-div").length === 0 && data.overview_webkit._config !== 2) {
+                if (JQX("#overview-div").length === 0 && data.overview_webkit._config !== 2) {
                   init_md();
                 }
                 addCustomjsText(data.overview_webkit._config == 1 ? _narrow : _enlarge);
 
                 if (data.overview_webkit._config === 2) {
-                  addCustomjsText('JQ("#overview-div").remove();');
+                  addCustomjsText('JQX("#overview-div").remove();');
                 }
               }
             });

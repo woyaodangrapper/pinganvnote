@@ -111,14 +111,14 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse)
 let uri = "http://localhost:5000/"
 
 function setMD(id) {
-  $(function() {
-    JQ("#editormd-view").html(` <textarea style="display:none;" name="test-editormd-markdown-doc">###Hello world!</textarea>   `)
+  JQX(function() {
+    JQX("#editormd-view").html(` <textarea style="display:none;" name="test-editormd-markdown-doc">###Hello world!</textarea>   `)
     var testEditormdView;
     
-    $.get("http://localhost:5000/WeatherForecast/get/blogs/md/text/" + id, function(markdown) {
+    JQX.get("http://localhost:5000/WeatherForecast/get/blogs/md/text/" + id, function(markdown) {
         
       testEditormdView = editormd.markdownToHTML("editormd-view", {
-          markdown        : markdown ,//+ "\r\n" + $("#append-test").text(),
+          markdown        : markdown ,//+ "\r\n" + JQX("#append-test").text(),
           //htmlDecode      : true,       // 开启 HTML 标签解析，为了安全性，默认不开启
           htmlDecode      : "style,script,iframe",  // you can filter tags decode
           //toc             : false,
@@ -148,8 +148,8 @@ function blog_list_initialization() {
     document.getElementsByTagName("head")[0].appendChild(script);
   })();
 
-  JQ(".mail-author-address")[0].onclick = function () {
-    window.open(JQ(".mail-author-address").html())
+  JQX(".mail-author-address")[0].onclick = function () {
+    window.open(JQX(".mail-author-address").html())
   }
    
   let url = uri+"WeatherForecast/get/md"
@@ -159,7 +159,7 @@ function blog_list_initialization() {
     "timeout": 0,
     async:false
   };
-  JQ.ajax(settings).done(function (response) {
+  JQX.ajax(settings).done(function (response) {
 
     response.fileList.forEach(element => {
      
@@ -168,13 +168,13 @@ function blog_list_initialization() {
       //   "method": "POST",
       //   "timeout": 0,
       // };
-      // JQ.ajax(settings).done(function (response) {
+      // JQX.ajax(settings).done(function (response) {
       //   console.log(response);
       // });
       moment.locale('zh-cn');
       element.time -= 28800000 
       var time = moment(element.time).format('YYYY-MM-DD HH:mm:ss')
-      JQ(".toast-container").append(`
+      JQX(".toast-container").append(`
         <div id="container_`+element.id+`" class="toast fade show" role="alert" aria-live="assertive" aria-atomic="true">
           <div class="toast-header">📑<strong style="width: 120px;overflow: hidden;height: 16px;"  title="`+ element.name.split('.')[0] +`" class="me-auto">`+ element.name.split('.')[0] +`</strong><small class="text-muted">`+moment(time, 'YYYY-MM-DD HH:mm:ss').fromNow()+`</small>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
@@ -186,7 +186,7 @@ function blog_list_initialization() {
     });
 
     response.fileList.forEach(element => {
-      var but = JQ(JQ(JQ("#container_"+element.id)[0]).children(".toast-header")[0]).children("button")[0]
+      var but = JQX(JQX(JQX("#container_"+element.id)[0]).children(".toast-header")[0]).children("button")[0]
       but
       .onclick = function () {
         let url = uri+"WeatherForecast/get/md/delete?id="+element.id
@@ -196,12 +196,12 @@ function blog_list_initialization() {
           "timeout": 0,
           async:false
         };
-        var ajax = JQ.ajax(settings)
+        var ajax = JQX.ajax(settings)
         ajax.done(function (response) {
           if(response.code == "0"){
             humane.baseCls="humane-"+"bigbox"
             humane.log("删除成功")
-            JQ("#container_"+element.id).remove()
+            JQX("#container_"+element.id).remove()
           }
         })
         ajax.error(function (jqXHR, textStatus, errorThrown) {
@@ -213,12 +213,12 @@ function blog_list_initialization() {
      
     });
 
-    JQ("#card-title").html("等待发布 ("+response.fileList.length+")")
+    JQX("#card-title").html("等待发布 ("+response.fileList.length+")")
 
   });
 
 
-  JQ(".btn-danger")[0].onclick = function () {
+  JQX(".btn-danger")[0].onclick = function () {
     var id = this.id
     let url = uri+"WeatherForecast/get/blogs/md/delete?id="+this.id
     var settings = {
@@ -227,21 +227,21 @@ function blog_list_initialization() {
       "timeout": 0,
       async:false
     };
-    var ajax = JQ.ajax(settings)
+    var ajax = JQX.ajax(settings)
     ajax.done(function (response) {
       if(response.code == "0"){
-        JQ(("#li_unstyled_" + id)).remove()
+        JQX(("#li_unstyled_" + id)).remove()
 
-        let array = JQ("#list-unstyled").children("li")
+        let array = JQX("#list-unstyled").children("li")
 
         if(array[0]){
-          $(array[0]).click()
-          $("#unstyled_" + array[0].id.replace("li_unstyled_",""))[0].click()
+          JQX(array[0]).click()
+          JQX("#unstyled_" + array[0].id.replace("li_unstyled_",""))[0].click()
           
           humane.baseCls="humane-"+"bigbox"
           humane.log("删除成功")
         }else{
-          $(".open-email-content").html("")
+          JQX(".open-email-content").html("")
         }
        
       }
@@ -259,11 +259,11 @@ function blog_list_initialization() {
     "timeout": 0,
     async:false
   };
-  JQ.ajax(settings).done(function (response) {
+  JQX.ajax(settings).done(function (response) {
 
     response.fileList.forEach(element => {
      
-      JQ("#list-unstyled").append(`
+      JQX("#list-unstyled").append(`
         <li  id="li_unstyled_`+element.id+`"><a href="#">
         <div id="unstyled_`+element.id+`" class="email-list-item">
           <div class="email-author">
@@ -276,7 +276,7 @@ function blog_list_initialization() {
   
     });
     response.fileList.forEach(element => {
-      var but = JQ("#unstyled_"+element.id)[0]
+      var but = JQX("#unstyled_"+element.id)[0]
       console.log(but)
       but.onclick = function () {
         var settings = {
@@ -286,23 +286,23 @@ function blog_list_initialization() {
         };
 
       
-        JQ.ajax(settings).done(function (response) {
+        JQX.ajax(settings).done(function (response) {
           if(response.code == "0"){
             console.log(response)
-            JQ('.mail-title').html(response.data.name)
+            JQX('.mail-title').html(response.data.name)
             moment.locale('zh-cn');
             response.time -= 28800000 
             var time = moment(response.time).format('YYYY-MM-DD HH:mm:ss')
             setMD(element.id)
 
-            JQ("#Download").attr("href","http://localhost:5000/WeatherForecast/get/blogs/md/text/" + element.id)
-            JQ("#card_title_name").html(response.data.name+".md")
-            JQ(".text-secondary").html(response.data.size+"KB")
+            JQX("#Download").attr("href","http://localhost:5000/WeatherForecast/get/blogs/md/text/" + element.id)
+            JQX("#card_title_name").html(response.data.name+".md")
+            JQX(".text-secondary").html(response.data.size+"KB")
             
-            JQ(".mail-other-info").html("<span>"+time+"</span>")
+            JQX(".mail-other-info").html("<span>"+time+"</span>")
           }
         });
-        JQ(".btn-danger").attr("id",element.id)
+        JQX(".btn-danger").attr("id",element.id)
         console.log("巴比q")
       }
      
@@ -311,24 +311,24 @@ function blog_list_initialization() {
 
 
 
-  let array = JQ("#list-unstyled").children("li")
+  let array = JQX("#list-unstyled").children("li")
   for (let index = 0; index < array.length; index++) {
     const element = array[index];
     
     element.onclick = function () {
       for (let index = 0; index < array.length; index++) {
         const element = array[index];
-        JQ(element).attr("class","");
+        JQX(element).attr("class","");
       }
 
-      JQ(this).attr("class","active");//class="active"
+      JQX(this).attr("class","active");//class="active"
     }
   }
   if(!array[0]){
-    $(".open-email-content").html("")
+    JQX(".open-email-content").html("")
   }else{
-    $(array[0]).click()
-    $("#unstyled_" + array[0].id.replace("li_unstyled_",""))[0].click()
+    JQX(array[0]).click()
+    JQX("#unstyled_" + array[0].id.replace("li_unstyled_",""))[0].click()
   }
 
 }

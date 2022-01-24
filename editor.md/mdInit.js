@@ -1,7 +1,7 @@
 var testEditor;
 
-$(function() {
-    $.get('test.md', function(md){
+JQX(function() {
+    JQX.get('test.md', function(md){
           // You can custom KaTeX load url.
         editormd.katexURL  = {
           css : "/editor.md/examples/css/katex.min",
@@ -52,58 +52,58 @@ $(function() {
         });
     });
     
-    $("#goto-line-btn").bind("click", function(){
+    JQX("#goto-line-btn").bind("click", function(){
         testEditor.gotoLine(90);
     });
     
-    $("#show-btn").bind('click', function(){
+    JQX("#show-btn").bind('click', function(){
         testEditor.show();
     });
     
-    $("#hide-btn").bind('click', function(){
+    JQX("#hide-btn").bind('click', function(){
         testEditor.hide();
     });
     
-    $("#get-md-btn").bind('click', function(){
+    JQX("#get-md-btn").bind('click', function(){
         alert(testEditor.getMarkdown());
     });
     
-    $("#get-html-btn").bind('click', function() {
+    JQX("#get-html-btn").bind('click', function() {
         alert(testEditor.getHTML());
     });                
     
-    $("#watch-btn").bind('click', function() {
+    JQX("#watch-btn").bind('click', function() {
         testEditor.watch();
     });                 
     
-    $("#unwatch-btn").bind('click', function() {
+    JQX("#unwatch-btn").bind('click', function() {
         testEditor.unwatch();
     });              
     
-    $("#preview-btn").bind('click', function() {
+    JQX("#preview-btn").bind('click', function() {
         testEditor.previewing();
     });
     
-    $("#fullscreen-btn").bind('click', function() {
+    JQX("#fullscreen-btn").bind('click', function() {
         testEditor.fullscreen();
     });
     
-    $("#show-toolbar-btn").bind('click', function() {
+    JQX("#show-toolbar-btn").bind('click', function() {
         testEditor.showToolbar();
     });
     
-    $("#close-toolbar-btn").bind('click', function() {
+    JQX("#close-toolbar-btn").bind('click', function() {
         testEditor.hideToolbar();
     });
     
-    $("#toc-menu-btn").click(function(){
+    JQX("#toc-menu-btn").click(function(){
         testEditor.config({
             tocDropdown   : true,
             tocTitle      : "目录 Table of Contents",
         });
     });
     
-    $("#toc-default-btn").click(function() {
+    JQX("#toc-default-btn").click(function() {
         testEditor.config("tocDropdown", false);
     });
 });
@@ -165,7 +165,7 @@ document.addEventListener("keydown", function (e) {
           "name": name
         }),
       };
-      var ajax = $.ajax(settings)
+      var ajax = JQX.ajax(settings)
       ajax.done(function (response) {
         if(response.code == "0"){
           humane.baseCls="humane-"+"bigbox"

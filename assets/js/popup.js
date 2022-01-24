@@ -1,16 +1,16 @@
-JQ("#popup_close").click(function () {
+JQX("#popup_close").click(function () {
  
   
 });
 
 // console.log(chrome)
 // 新标签打开网页
-JQ('#open_url_new_tab_github').click(() => {
+JQX('#open_url_new_tab_github').click(() => {
 	chrome.tabs.create({url: 'https://github.com/light-come/Chrome-Big'});
 });
 
 // 打开后台页
-JQ('#open_background').click(e => {
+JQX('#open_background').click(e => {
 	window.open(chrome.extension.getURL('background.html'));
 });
 
