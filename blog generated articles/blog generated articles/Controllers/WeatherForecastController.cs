@@ -33,23 +33,30 @@ namespace blog_generated_articles.Controllers
         [HttpPost, Route("set/md")]
         public async Task<IActionResult> MD_IF(set_md options)
         {
-
-            System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
-            byte[] retVal = md5.ComputeHash(System.Text.Encoding.Default.GetBytes(options.txt));
-
-            StringBuilder sb = new StringBuilder();
-            for (int i = 0; i < retVal.Length; i++)
+            try
             {
-                sb.Append(retVal[i].ToString("x2"));
-            }
-            string mad5 = sb.ToString();
-            await _Delete(mad5);
-            Task<_IO.IActionResult.Strat> task = DirectoryFileStore.FileStore(options.txt, options.name);
+                System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
+                byte[] retVal = md5.ComputeHash(System.Text.Encoding.Default.GetBytes(options.txt));
 
-            if (task.Result.code == "0")
-                return Ok(task.Result);
-            else
-                return NotFound();
+                StringBuilder sb = new StringBuilder();
+                for (int i = 0; i < retVal.Length; i++)
+                {
+                    sb.Append(retVal[i].ToString("x2"));
+                }
+                string mad5 = sb.ToString();
+                await _Delete(mad5);
+                Task<_IO.IActionResult.Strat> task = DirectoryFileStore.FileStore(options.txt, options.name);
+
+                if (task.Result.code == "0")
+                    return Ok(task.Result);
+                else
+                    return NotFound();
+            }
+            catch (Exception ex)
+            {
+                return NotFound(ex.Message);
+            }
+          
         }
 
      
@@ -590,8 +597,15 @@ namespace blog_generated_articles.Controllers
             //txt += "\r\npause";
 
             string basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
-            string filePath = Path.Combine(basePath, ".WebCache");
+            string filePath = Path.Combine(basePath, ".ExeCache");
             string path = filePath + "\\daban.bat";
+
+
+
+            if (Directory.Exists(filePath) == false)//如果不存在就创建file文件夹
+            {
+                Directory.CreateDirectory(filePath);
+            }
             if (!File.Exists(filePath))
             {
                 FileStream fs1 = new FileStream(path, FileMode.Create, FileAccess.Write);//创建写入文件
@@ -611,25 +625,48 @@ namespace blog_generated_articles.Controllers
             try
             {
 
-                using (Process myPro = new Process())
+                //using (Process myPro = new Process())
+                //{
+                //    myPro.StartInfo.FileName = Path.Combine(filePath, path);
+                //    myPro.StartInfo.UseShellExecute = false;
+                //    myPro.StartInfo.CreateNoWindow = true;
+                //    myPro.Start();
+                //    myPro.WaitForExit();
+                //}
                 {
-                    myPro.StartInfo.FileName = Path.Combine(filePath, path);
-                    myPro.StartInfo.UseShellExecute = false;
-                    myPro.StartInfo.CreateNoWindow = true;
-                    myPro.Start();
-                    myPro.WaitForExit();
+                    //System.Diagnostics.ProcessStartInfo psi = new System.Diagnostics.ProcessStartInfo();
+                    //psi.FileName = path;
+                    //psi.UseShellExecute = false;
+                    //psi.CreateNoWindow = true;
+                    //System.Diagnostics.Process.Start(psi);
                 }
+                {
+
+                    ProcessStartInfo processInfo = new ProcessStartInfo(path);
+                    processInfo.UseShellExecute = false;
+                    processInfo.CreateNoWindow = true;
+                    Process batchProcess = new Process();
+                    batchProcess.StartInfo = processInfo;
+                    batchProcess.Start();
+                }
+                //if (File.Exists(path))
+                //{
+                //    File.Delete(path);
+                //}
+
             }
             catch (Exception ex)
             {
                 Console.WriteLine("Exception Occurred :{0},{1}", ex.Message, ex.StackTrace.ToString());
+                throw;
             }
-    
+
 
         }
 
 
-        public class IActionResult
+     
+    public class IActionResult
             {
                 public class Strat
                 {

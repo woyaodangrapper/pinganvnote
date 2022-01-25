@@ -95,10 +95,10 @@
       injectCustomJs("/assets/js/jquery-3.6.0.min.js", function () {
         addCustomjsText(
           `JQX(".overview-close").click(function () {
-          JQX("#overview-div").animate({opacity:0},100,"linear",function(){
-            sendMessageToContentScriptByEvent(JSON.stringify({idN : "overview","_config":2}))
-            JQX("#overview-div").remove();
-          });
+            JQX("#overview-div").animate({opacity:0},100,"linear",function(){
+              sendMessageToContentScriptByEvent(JSON.stringify({idN : "overview","_config":2}))
+              JQX("#overview-div").remove();
+            });
         })
         JQX(".overview-narrow").click(function () {
           sendMessageToContentScriptByEvent(JSON.stringify({idN : "overview","_config":1}))
