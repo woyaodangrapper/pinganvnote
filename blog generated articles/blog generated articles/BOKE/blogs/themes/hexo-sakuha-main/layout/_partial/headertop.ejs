@@ -5,7 +5,7 @@
     <div class="focusinfo no-select">
       <div class="header-tou">
         <a href="<%- theme.url%>">
-         <h1 class="center-textpc center-textmb glitch is-glitching Ubuntu-font" data-text="Hi, izNyaku!">Hi, izNyaku!</h1>
+         <h1 class="center-textpc center-textmb glitch is-glitching Ubuntu-font" data-text="那就开开心心">那就开开心心</h1>
           <!-- <img src="<%- (theme.cdn || '') + theme.avatar %>"> -->  <!--这里注释掉了头像-->
         </a>
       </div>
@@ -20,7 +20,7 @@
               <% if (theme.social[i].qrcode) {%>
                 <li class="wechat">
                   <a href="<%= theme.social[i].url%>">
-                    <img src="<%- (theme.cdn || '') + theme.social[i].img%>">
+                    <img src="<%- (theme.cdn || '') + theme.social[i].img%>"> 
                   </a>
                   <div class="wechatInner">
                     <img src="<%- (theme.cdn || '') + theme.social[i].qrcode%>">
@@ -29,7 +29,13 @@
               <% } else { %>
                 <li>
                   <a href="<%= theme.social[i].url%>" target="_blank" class="social-github" title="<%- i %>">
-                    <img src="<%- (theme.cdn || '') + theme.social[i].img%>">
+                    
+                    <% if (theme.social[i].svg) {%>
+                        <%- (theme.cdn || '') + theme.social[i].svg%>
+                      <% } else { %>
+                        <img src="<%- (theme.cdn || '') + theme.social[i].img%>">
+                    <% } %>
+
                   </a>
                 </li>
               <% } %>

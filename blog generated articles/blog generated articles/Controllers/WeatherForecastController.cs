@@ -325,11 +325,13 @@ namespace blog_generated_articles.Controllers
             public static async Task<_IO.IActionResult.Strat> FileStore(String text,String name)
             {
                 var basePath = Path.GetDirectoryName(typeof(Program).Assembly.Location);
-                string fileFolder = Path.Combine(basePath, ".WebCache");
+                string fileFolder = Path.Combine(basePath, ".WebCache");   
+                string fileBackup = Path.Combine(basePath, ".backup");
 
                 if (!Directory.Exists(fileFolder))
                     Directory.CreateDirectory(fileFolder);
-
+                if (!Directory.Exists(fileBackup))
+                    Directory.CreateDirectory(fileBackup);
                 _IO.IActionResult.Strat iio = new _IO.IActionResult.Strat();
                 var data = new _IO.IActionResult.data
                 {
@@ -348,7 +350,11 @@ namespace blog_generated_articles.Controllers
 
                         var fileName = $"{name + ".md"}";//DateTime.Now.ToString("yyyyMMddHHmmss") + 
                         var filePath = Path.Combine(fileFolder, fileName);
-
+                        var backupPath = Path.Combine(fileBackup, fileName);
+                        using (var stream = new FileStream(backupPath, FileMode.Create))
+                        {
+                            await item.CopyToAsync(stream);
+                        }
                         using (var stream = new FileStream(filePath, FileMode.Create))
                         {
                             await item.CopyToAsync(stream);

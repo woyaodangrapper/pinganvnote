@@ -1,11 +1,11 @@
 # site name
-prefixName: いちのせ
-siteName: にゃー
+prefixName: 早起读书
+siteName: 我喜欢的有很多，知识和钱
 # favicon and site master avatar
 favicon: /images/favicon.png
-avatar: https://cdn.jsdelivr.net/gh/imouup/pico/picavatar.png
-url: https://mouup.top
-description: Can u see me?
+avatar: data:image/png;base64,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
+url: https://blog.taoistcore.com/
+description: 我?
 cdn: 
 pjax: 1
 # 1开启
@@ -22,12 +22,6 @@ menus:
     资源: {path: /categories/资源/, fa: fa-cloud-download }, 
     随想: {path: /categories/随想/, fa: fa-commenting-o },
     转载: {path: /categories/转载/, fa: fa-book }
-  } }
-  list: { path: javascript:;, fa: fa-list-ul faa-vertical, submenus: { 
-    书单: {path: /tags/悦读/, fa: fa-th-list faa-bounce }, 
-    番组: {path: /bangumi/, fa: fa-film faa-vertical }, 
-    歌单: {path: /music/, fa: fa-headphones },
-    图集: {path: /tags/图集/, fa: fa-photo }
   } }
   留言板: { path: /comment/, fa: fa-pencil-square-o faa-tada }
   基（姬）友: { path: /links/, fa: fa-link faa-shake }
@@ -50,57 +44,44 @@ bg:
   - https://api.flymc.cc/cover.php
   - https://cdn.jsdelivr.net/gh/imouup/pico/picSnow Mile93197348_p0.jpg
   - https://cdn.jsdelivr.net/gh/imouup/pico/pic20211127_140235062_iOS.jpg
-  - https://cdn.jsdelivr.net/gh/imouup/pico/pic20211127_140150163_iOS.jpg
-  - https://cdn.jsdelivr.net/gh/imouup/pico/pic20210727_114955586_iOS.jpg
-  - https://cdn.jsdelivr.net/gh/imouup/pico/pic20211127_140531254_iOS.png
-  - https://cdn.jsdelivr.net/gh/imouup/pico/pic92564859_p0.png
-  - https://cdn.jsdelivr.net/gh/imouup/pico/pic20211127_140132187_iOS.png
-  - https://cdn.jsdelivr.net/gh/imouup/pico/picnya-n94819771_p0.png
-  - https://cdn.jsdelivr.net/gh/imouup/pico/pic310948_bandage_breasts_candy_cleavag.jpg
+ 
 # 背景图片样式 空 原图效果 filter-dim 阴影 filter-grid 横条 filter-dot 点点
 bgclass: 
 
 # startdash url, title, desc img
 startdash:
-  - {url: https://github.com/imouup, title: Github , desc: my github, img: https://cdn.jsdelivr.net/gh/imouup/pic/0.jpg}
-  - {url: https://space.bilibili.com/438518095, title: Bilibili, desc: up的b站账号, img: https://cdn.jsdelivr.net/gh/imouup/pic/20200717_023317282_iOS.jpg}
-  - {url: https://www.zhihu.com/people/gui-ling-zhe-92, title: 知乎, desc: 知乎, img: https://cdn.jsdelivr.net/gh/imouup/pic/20200505_102236910_iOS 1.jpg}
-
-
+  - {url: https://github.com/light-come/Chrome-Big, title: 谷歌随手记插件, desc: 谷歌速记插件-大班博客, img: https://cdn.jsdelivr.net/gh/imouup/pic/20200717_023317282_iOS.jpg}
+  - {url: https://github.com/light-come/Optical.Forms, title: Optical-WEBGL-PC, desc: Optical系列-PC三维可视化, img: https://cdn.jsdelivr.net/gh/imouup/pic/20200717_023317282_iOS.jpg}
+  - {url: https://github.com/light-come/IOT-Meta, title: IOT-API Oauth2 JWT MQTT RMQ GB28181  ..., desc: 中间件系列-自用框架, img: https://cdn.jsdelivr.net/gh/imouup/pic/20200717_023317282_iOS.jpg}
+  - {url: https://github.com/light-come/Taoist.Cesium, title: Cesium WEBGL, desc: Taoist系列-WEBGL引擎, img: https://cdn.jsdelivr.net/gh/imouup/pic/20200717_023317282_iOS.jpg}
+  - {url: https://docs.qq.com/sheet/DTVJzeW9RZmVmU2h4?tdsourcetag=s_pcqq_send_grpfile&ADUIN=1365508153&ADSESSION=1644284827&ADTAG=CLIENT.QQ.5651_.0&ADPUBNO=27156&_t=1644307373626&tab=BB08J2, title: 书单, desc: 别忘记读书, img: https://cdn.jsdelivr.net/gh/imouup/pic/20200717_023317282_iOS.jpg}
+  - {url: https://docs.qq.com/pdf/DTWRDb2NCd3p4ZUZJ, title: 简历-不愿面对, desc: 工作, img: https://cdn.jsdelivr.net/gh/imouup/pic/20200717_023317282_iOS.jpg}
 
 # your site build time or founded date
 siteBuildingTime: 27/01/2021
 
 #social  url, img PC端配置
 social:
-  github: {url: http://github.com/imouup, img: https://cdn.jsdelivr.net/gh/xbclub/staticCDN@0.6/img/social/github.png}
-  #sina: {url: http://weibo.com/<username>?is_all=1, img: /img/social/sina.png}
-  #wangyiyun: {url: http://weibo.com/mashirozx?is_all=1, img: /img/social/wangyiyun.png}
-  zhihu: {url: https://www.zhihu.com/people/gui-ling-zhe-92, img: https://cdn.jsdelivr.net/gh/imouup/pic/知乎.png}
-  email: {url: mailto:iznyaku@outlook.com, img: https://cdn.jsdelivr.net/gh/xbclub/staticCDN@0.6/img/social/email.svg}
-  Twitter: {url: https://twitter.com/iamMouup, img: https://cdn.jsdelivr.net/gh/imouup/pic/推特.png}
-  telegram: {url: https://t.me/izNyaku, img: https://cdn.jsdelivr.net/gh/imouup/pico/pictelegram.png}
-  bilibili: {url: https://space.bilibili.com/438518095, img: https://cdn.jsdelivr.net/gh/imouup/pic/bilibili-line.png}
-  #wechat: {url: /#, qrcode: /img/custom/wechat.jpg, img: /img/social/wechat.png}
-  #wechat2: {url: /#, qrcode: /img/custom/wechat.jpg, img: /img/social/wechat.png}
-
+  github: {url: https://github.com/light-come, svg: <svg t="1644304341970" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="7993" width="32" height="32"><path d="M512 0C229.283787 0 0.142041 234.942803 0.142041 524.867683c0 231.829001 146.647305 428.553077 350.068189 497.952484 25.592898 4.819996 34.976961-11.38884 34.976961-25.294314 0-12.45521-0.469203-45.470049-0.725133-89.276559-142.381822 31.735193-172.453477-70.380469-172.453477-70.380469-23.246882-60.569859-56.816233-76.693384-56.816234-76.693385-46.493765-32.58829 3.540351-31.948468 3.540351-31.948467 51.356415 3.71097 78.356923 54.086324 78.356923 54.086324 45.683323 80.19108 119.817417 57.072162 148.993321 43.593236 4.649376-33.91059 17.915029-57.029508 32.50298-70.167195-113.675122-13.222997-233.151301-58.223843-233.1513-259.341366 0-57.285437 19.919806-104.163095 52.678715-140.846248-5.246544-13.265652-22.820334-66.626844 4.990615-138.884127 0 0 42.996069-14.076094 140.760939 53.787741 40.863327-11.644769 84.627183-17.445825 128.177764-17.6591 43.465272 0.213274 87.271782 6.014331 128.135109 17.6591 97.679561-67.906489 140.59032-53.787741 140.59032-53.787741 27.938914 72.257282 10.407779 125.618474 5.118579 138.884127 32.844219 36.683154 52.593405 83.560812 52.593405 140.846248 0 201.586726-119.646798 245.990404-233.663158 258.957473 18.341577 16.208835 34.721032 48.199958 34.721032 97.210357 0 70.167195-0.639822 126.7275-0.639823 143.960051 0 14.033439 9.213443 30.370239 35.190235 25.209005 203.250265-69.527373 349.769606-266.123484 349.769605-497.867175C1023.857959 234.942803 794.673558 0 512 0" fill="#3E75C3" p-id="7994"></path></svg>}
+  bilibili: {url: https://space.bilibili.com/245183918, svg: <svg t="1644304294691" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4536" width="32" height="32"><path d="M262.4 64h499.2C892.8 64 960 131.2 960 262.4v499.2c0 131.2-67.2 198.4-198.4 198.4H262.4C131.2 960 64 892.8 64 761.6V262.4C64 131.2 131.2 64 262.4 64z" fill="#FF5CA1" p-id="4537"></path><path d="M707.2 454.4c3.2 0 16-3.2 16-3.2l6.4 48-12.8 3.2c0-6.4-9.6-44.8-9.6-48m25.6-6.4l6.4 51.2h19.2c-3.2-19.2-9.6-51.2-9.6-51.2h-16m-12.8 70.4s28.8-6.4 38.4-3.2c6.4 19.2 16 128 16 131.2-6.4 0-28.8 3.2-28.8 3.2-3.2-6.4-25.6-124.8-25.6-131.2m105.6-64h16c0 3.2 3.2 48 0 48h-12.8c0-3.2-3.2-44.8-3.2-48m22.4 0v51.2h19.2v-51.2c-6.4 0-12.8-3.2-19.2 0m-19.2 67.2s28.8-3.2 38.4 0c3.2 22.4 3.2 128 3.2 131.2h-28.8c0-6.4-12.8-128-12.8-131.2m-67.2-131.2c16 86.4 28.8 236.8 32 246.4h28.8c-12.8-92.8-22.4-243.2-22.4-246.4-3.2-6.4-38.4 0-38.4 0m-38.4 208c-3.2-25.6-89.6-51.2-140.8-44.8 0 0-6.4-54.4-9.6-105.6-3.2-44.8 0-89.6 0-96-3.2-3.2-38.4 16-57.6 22.4 0 0 22.4 96 38.4 297.6 0 0 25.6 3.2 70.4-6.4 51.2-9.6 102.4-35.2 99.2-67.2M617.6 640l-9.6-54.4c3.2 0 48 16 54.4 19.2 0 3.2-44.8 35.2-44.8 35.2m-275.2-185.6c3.2 0 16-3.2 16-3.2l6.4 48c-3.2 0-12.8 3.2-12.8 3.2 0-6.4-9.6-44.8-9.6-48m25.6-6.4l6.4 51.2h19.2c-3.2-19.2-6.4-51.2-6.4-51.2h-19.2m-12.8 70.4s28.8-6.4 38.4-3.2c6.4 19.2 16 128 16 131.2-6.4 0-28.8 3.2-28.8 3.2-3.2-6.4-25.6-124.8-25.6-131.2m105.6-64h16c0 3.2 3.2 48 0 48h-12.8c0-3.2-3.2-44.8-3.2-48m25.6 0v51.2h19.2v-51.2c-6.4 0-12.8-3.2-19.2 0m-22.4 67.2s28.8-3.2 38.4 0c3.2 22.4 3.2 128 3.2 131.2h-28.8c0-6.4-12.8-128-12.8-131.2m-67.2-131.2c16 86.4 28.8 236.8 32 246.4h28.8c-9.6-92.8-19.2-243.2-19.2-249.6-6.4-3.2-41.6 3.2-41.6 3.2m-38.4 208c-3.2-25.6-89.6-51.2-140.8-44.8 0 0-6.4-54.4-9.6-105.6-3.2-44.8 0-89.6 0-96-3.2-3.2-38.4 16-57.6 22.4 0 0 22.4 96 38.4 297.6 0 0 25.6 3.2 70.4-6.4s105.6-35.2 99.2-67.2M252.8 640l-6.4-54.4c3.2 0 48 16 54.4 19.2-3.2 3.2-48 35.2-48 35.2" fill="#FFFFFF" p-id="4538"></path></svg>}
+  qqqzone: {url: https://user.qzone.qq.com/1365508153/infocenter, svg: <svg t="1644304443556" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="12802" width="32" height="32"><path d="M511.9 64.5c-243.3 0-441.2 194.1-447.4 435.8v23.3c6.2 241.8 204.1 435.8 447.4 435.8 247.2 0 447.6-200.4 447.6-447.5S759.1 64.5 511.9 64.5z m151.9 529.2c16.6 0.9 31.9 1.5 44.4 1.5 0 0-16 3.4-42.9 7.4l29.3 171.1L508.9 676l-185.8 97.6 35.5-206.8-150.3-146.4L416 390.2 508.9 202l92.9 188.2 207.7 30.2-150.3 146.4 4.6 26.9z" fill="#F5BF3B" p-id="12803"></path><path d="M659.3 443.9c-178.8-32.1-327 4.6-327 4.6 87.1-3.1 226.2 16.8 226.2 16.8l-191 140.6c117 18.1 236.3 5.8 297.9-3.3l-1.5-8.9c-78.6-4.4-187.9-16.9-187.9-16.9l183.3-132.9z" fill="#F5BF3B" p-id="12804"></path></svg>}
+  acebook: {url: https://www.facebook.com/AitnuForm/, svg: <svg t="1644305875114" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="4820" width="32" height="32"><path d="M985.742 749.936c0 130.864-106.178 236.964-237.17 236.964H274.298c-130.954 0-237.092-106.102-237.092-236.964V276.018c0-130.902 106.138-236.966 237.092-236.966h474.274c130.992 0 237.17 106.064 237.17 236.966v473.918z" fill="#235B9E" p-id="4821"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="4822"></path><path d="M432.434 809.176h118.568V512.984h87.996l10.808-118.482h-94.252V347.14c0-23.102 15.398-28.464 26.208-28.464h66.542v-101.512l-91.59-0.384c-101.662 0-124.782 75.71-124.782 124.19v53.534H373.14v118.482h59.294v296.19z" fill="#FFFFFF" p-id="4823"></path><path d="M556.712 216.778l91.59 0.384v101.512H581.76c-10.808 0-26.208 5.362-26.208 28.464v47.362h94.252l-10.808 118.482H551v296.192h-118.568V512.982H373.14V394.5h58.792v-53.534c0-48.478 23.118-124.188 124.78-124.188m0-19.754c-64.452 0-98.87 28.234-116.394 51.92-24.486 33.094-28.142 71.862-28.142 92.024v33.78H373.14c-10.91 0-19.754 8.844-19.754 19.754v118.482c0 10.91 8.844 19.754 19.754 19.754h39.54v276.438c0 10.91 8.844 19.754 19.754 19.754h118.568c10.91 0 19.754-8.844 19.754-19.754V532.738h68.242a19.756 19.756 0 0 0 19.672-17.96l10.808-118.482a19.76 19.76 0 0 0-19.672-21.55h-74.498v-27.608c0-4.532 0.948-6.908 1.758-7.568 0.7-0.568 2.422-1.142 4.696-1.142h66.542c10.91 0 19.754-8.844 19.754-19.754v-101.512a19.752 19.752 0 0 0-19.67-19.754l-91.59-0.384h-0.086z" fill="#1A4477" p-id="4824"></path><path d="M728.078 956.122H294.83c-124.896 0-226.506-101.636-226.506-226.566V296.358c0-124.908 101.61-226.526 226.506-226.526h433.248c124.918 0 226.544 101.62 226.544 226.526v433.198c0.002 124.928-101.626 226.566-226.544 226.566zM294.83 89.636c-113.976 0-206.702 92.734-206.702 206.72v433.198c0 114.008 92.726 206.762 206.702 206.762h433.248c113.996 0 206.74-92.754 206.74-206.762V296.358c0-113.986-92.744-206.72-206.74-206.72H294.83z" fill="#1A4477" p-id="4825"></path></svg>}
 #social  url, img 移动端配置
 msocial:
-  github: {url: http://github.com/imouup, fa: fa-github, color: 333}
-  #weibo: {url: http://weibo.com/<username>?is_all=1, fa: fa-weibo, color: dd4b39}
-  #qq: {url: https://wpa.qq.com/msgrd?v=3&uin=<qq number>site=qq&menu=yes, fa: fa-qq, color: 25c6fe}
+  github: {url: https://github.com/light-come, img: https://cdn.jsdelivr.net/gh/xbclub/staticCDN@0.6/img/social/github.png}
+  bilibili: {url: https://space.bilibili.com/245183918, img: https://cdn.jsdelivr.net/gh/imouup/pic/bilibili-line.png}
 
 donate:
-  #paypal: https://www.paypal.me/<username>
-  alipay: https://cdn.jsdelivr.net/gh/imouup/pico/picalipay.jpg
-  wechat: https://cdn.jsdelivr.net/gh/imouup/pico/picwechatpay.jpg
-  #wechatSQ: /img/custom/donate/
+  github: {url: https://github.com/light-come, img: https://cdn.jsdelivr.net/gh/xbclub/staticCDN@0.6/img/social/github.png}
+  bilibili: {url: https://space.bilibili.com/245183918, img: https://cdn.jsdelivr.net/gh/imouup/pic/bilibili-line.png}
 
 
 movies:
-  url: https://mfvideo.mouup.top/%E6%AD%A4%E8%A7%86%E9%A2%91%E8%83%BD%E6%8B%AF%E6%95%91%E4%BD%A0%E7%9A%84%E8%A7%86%E5%8A%9B%EF%BC%81%E7%9C%8B%E5%AE%8C%E5%90%8E%E4%B8%96%E7%95%8C%E9%83%BD%E6%83%8A%E5%91%86%E4%BA%86%EF%BC%81.241520427.mp4
+  url: https://iamswlx-my.sharepoint.com/personal/mfuns_iamswlx_onmicrosoft_com/_layouts/15/download.aspx?UniqueId=51300f43-a208-4ca9-b1ca-d4c53db97961&Translate=false&tempauth=eyJ0eXAiOiJKV1QiLCJhbGciOiJub25lIn0.eyJhdWQiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAvaWFtc3dseC1teS5zaGFyZXBvaW50LmNvbUAyYmE5YzYwOC1mMzEwLTRjOTItODNmOC1kMjY2MzZmMDY2MmYiLCJpc3MiOiIwMDAwMDAwMy0wMDAwLTBmZjEtY2UwMC0wMDAwMDAwMDAwMDAiLCJuYmYiOiIxNjQzMTA0NzQ1IiwiZXhwIjoiMTY0MzEwODM0NSIsImVuZHBvaW50dXJsIjoiMFBKU1NqZCthZnRac3hUa1NqODN3Vko2ZTZKMGcycE9vNUsrZ05oNFFHVT0iLCJlbmRwb2ludHVybExlbmd0aCI6IjE2MCIsImlzbG9vcGJhY2siOiJUcnVlIiwiY2lkIjoiTWpaaU9EQm1ZekV0TjJWallTMDBaV0psTFdKa1pEUXRNelUxTUdVNFpHVXpNR05pIiwidmVyIjoiaGFzaGVkcHJvb2Z0b2tlbiIsInNpdGVpZCI6Ik9XRTFaR1JrWWprdE9ESmhNaTAwTXpFMkxXRXpNMlV0TVdFeE1qVTJaV1V5TUdRMyIsImFwcF9kaXNwbGF5bmFtZSI6Im1tIiwiZmFtaWx5X25hbWUiOiJtZnVucyIsImFwcGlkIjoiZjkyMDkyZDItNjk3MC00Njg1LWFjMjQtNWRhZDI0YzNhNmJhIiwidGlkIjoiMmJhOWM2MDgtZjMxMC00YzkyLTgzZjgtZDI2NjM2ZjA2NjJmIiwidXBuIjoibWZ1bnNAaWFtc3dseC5vbm1pY3Jvc29mdC5jb20iLCJwdWlkIjoiMTAwMzIwMDE3NDFFNDA5MCIsImNhY2hla2V5IjoiMGguZnxtZW1iZXJzaGlwfDEwMDMyMDAxNzQxZTQwOTBAbGl2ZS5jb20iLCJzY3AiOiJhbGxmaWxlcy53cml0ZSBhbGxzaXRlcy53cml0ZSIsInR0IjoiMiIsInVzZVBlcnNpc3RlbnRDb29raWUiOm51bGwsImlwYWRkciI6IjQwLjEyNi4yMy4zNiJ9.TjY2enJDOVlFTWxwdytkQ2w4eWdsclFTYmNlMXJJa0orMTJ2R2wxZTcyMD0&ApiVersion=2.0
   # 多个视频用逗号隔开，随机获取。支持的格式目前已知MP4,Flv。其他的可以试下，不保证有用
-  name: nya.mp4
+  name: 超燃神曲《Wake》让你重拾二次元的美好
+   
+  
 
 aplayer: 
   id: 5484942041
@@ -141,5 +122,8 @@ hitokoto: true
 
 #全站灰白主题
 gray: false
+
+# Footer Copyright Line
+footer_copyright: "<p>Copyright © 2022 <a href=\"#\"> taoistcore.com </a> All Rights Reserved  ICP<a style=\"cursor: pointer;\" onclick=\"window.open(`https://beian.miit.gov.cn`) \">皖ICP备18010834号</a> | Design & Hexo <a href=\"http://www.codeblocq.com/\">Jonathan Klughertz</a></p>"
 
 

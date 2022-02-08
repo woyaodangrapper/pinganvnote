@@ -152,7 +152,7 @@ function init_js() {
 
     let overview_name = "大班随手笔记-每天一篇文章，TS-艾略特为你折腰!"
       chrome.storage.sync.get(["overview_txt"], function (data) {
-        if(data.overview_txt._config === 999){
+        if(data.overview_txt!=null&&data.overview_txt._config === 999){
           overview_name = data.overview_txt._txt
           post(overview_name)
         }

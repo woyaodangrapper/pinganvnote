@@ -148,9 +148,8 @@
         chrome.overview_webkit_setInterval = setInterval(() => {
           try {
             chrome.storage.sync.get(["overview_webkit"], function (data) {
-              if (overview_webkit_state != data.overview_webkit._config) {
+              if (data.overview_webkit != null && overview_webkit_state != data.overview_webkit._config) {
                 overview_webkit_state = data.overview_webkit._config;
-                console.log(overview_webkit_state, data.overview_webkit._config);
                 if (JQX("#overview-div").length === 0 && data.overview_webkit._config !== 2) {
                   init_md();
                 }
@@ -529,6 +528,7 @@
       });
     }
   });
+  //处理事件
   function runtimeMessageProcessing(data) {
     if (data.question.overview_webkit) {
       chrome.storage.sync.set(data.question, function () {
@@ -536,6 +536,11 @@
         init_md();
       });
     }
+    if(data.question.overview_webkit_update != null && data.question.overview_webkit_update._config == 1){
+      console.log("开始同步文章")
+    }
+
+
   }
 
   // window.addEventListener("message", function(e)
@@ -558,7 +563,10 @@
       document.body.appendChild(hiddenDiv);
     }
     hiddenDiv.addEventListener("myCustomEvent", function () {
-      var eventData = document.getElementById("myCustomEventDiv").innerText;
+      if(!hiddenDiv){
+        return
+      }
+      var eventData = hiddenDiv.innerText;
       var data = JSON.parse(eventData);
       console.log("收到自定义事件：", data);
       switch (data.idN) {
@@ -576,10 +584,12 @@
             });
           }
           break;
-
         default:
           break;
       }
+
+     
+
     });
   }
 })();

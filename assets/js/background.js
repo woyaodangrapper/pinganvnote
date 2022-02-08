@@ -5,10 +5,11 @@ var flag = {
 
 var debug = false
 var uri = debug ? "http://localhost:5000/" : "https://api.taoistcore.com/"
+
+
 init_js()
 
 function init_js() {
-  
   /*var d = new Date();
   console.log(d.toLocaleString());*/
   setInterval(function () {
@@ -30,17 +31,29 @@ function init_js() {
   });
   //-------------------- 右键菜单演示 ------------------------//
   chrome.dabanaiguan_state = false;
-
+  chrome.storage.sync.set({ overview_webkit: { idN: "overview", _config: 2 } }, function () {
+    console.log("初始化右键菜单");
+  });
   setInterval(function () {
-    chrome.storage.sync.get(["overview_webkit"], function (type) {
-      if (type.overview_webkit._config === 2) {
+    chrome.storage.sync.get(["overview_webkit"], function (data) {
+      if (data.overview_webkit != null && data.overview_webkit._config === 2) {
         if(!chrome.dabanaiguan_state){
-          chrome.contextMenus.remove("dabanaiguan")
+          if(chrome.contextMenus){
+            chrome.contextMenus.removeAll(() => {})
+          }
           chrome.contextMenus.create({
             id:"dabanaiguan",
             title: "打开大班",
             onclick: function () {
               send({ overview_webkit: { idN: "overview", _config: 0 } })
+            },
+          });
+
+          chrome.contextMenus.create({
+            id:"dabanaiguan_update",
+            title: "同步文章",
+            onclick: function () {
+              send({ overview_webkit_update: { idN: "overview", _config: 1 } })
             },
           });
           chrome.dabanaiguan_state = true;
@@ -50,7 +63,9 @@ function init_js() {
         if(chrome.dabanaiguan_state)
         {
           chrome.dabanaiguan_state=false
-          chrome.contextMenus.remove("dabanaiguan")
+          if(chrome.contextMenus){
+            chrome.contextMenus.removeAll(() => {})
+          }
         }
       }
     });
@@ -359,8 +374,11 @@ function init_js() {
               JQX("#Download").attr("href","http://localhost:5000/WeatherForecast/get/blogs/md/text/" + element.id)
               JQX("#card_title_name").html(response.data.name+".md")
               JQX(".text-secondary").html(response.data.size+"KB")
-              
-              JQX(".mail-other-info").html("<span>"+time+"</span>")
+              JQX(".mail-author-address") .html(response.data.size+"KB")
+              var yyyy = moment(response.time).format('YYYY')
+              var mm = moment(response.time).format('MM')
+              var dd = moment(response.time).format('DD')
+              JQX("#server_url").html(`https://blog.taoistcore.com/${yyyy}/${mm}/${dd}/${response.data.name}/`)
             }
           });
           JQX(".btn-danger").attr("id",element.id)

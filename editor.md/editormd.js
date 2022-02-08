@@ -4118,7 +4118,6 @@
         css.href   = fileName + ".css";
 
         if(into === "head") {
-            console.log(css)
             document.getElementsByTagName("head")[0].appendChild(css);
         } else {
             document.body.appendChild(css);

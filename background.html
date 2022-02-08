@@ -26,7 +26,7 @@
       <nav class="navbar navbar-expand-lg d-flex justify-content-between">
         <div class="" id="navbarNav">
           <ul class="navbar-nav" id="leftNav">
-            <li class="nav-item"><a class="nav-link" id="sidebar-toggle" href="#"><i data-feather="arrow-left"></i></a></li>
+            <li class="nav-item"><a class="nav-link" id="sidebar-toggle" href="#"><i class="fa fa-arrow-left" aria-hidden="true"></i></a></li>
             <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
           </ul>
         </div>
@@ -71,7 +71,7 @@
         </div>
       </div>
     </div>
-    <div class="page-content" style="margin-left: 317px;">
+    <div class="page-content">
       <div class="main-wrapper">
         <div class="row">
           <div class="col-sm-12 col-md-4 m-b-md">
@@ -86,8 +86,35 @@
           </div>
           <div class="col-sm-12 col-md-8">
             <div class="card">
-              <div class="card-body">
-                <div class="open-email-content">
+              <div class="card-body" style="padding-right: 15px;">
+                <style>
+                  .webkit {
+                    overflow: auto;
+                    float   : left;
+                    border  : none;
+                    padding-right: 15px;
+
+                  }
+                    
+                  .webkit-1::-webkit-scrollbar {
+                    /*滚动条整体样式*/
+                    width : 5px;  /*高宽分别对应横竖滚动条的尺寸*/
+                    height: 1px;
+                  }
+                  .webkit-1::-webkit-scrollbar-thumb {
+                    /*滚动条里面小方块*/
+                    border-radius: 5px;
+                    box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+                    background   : #535353;
+                  }
+                  .webkit-1::-webkit-scrollbar-track {
+                    /*滚动条里面轨道*/
+                    box-shadow   : inset 0 0 5px rgba(105, 105, 105, 0.2);
+                    border-radius: 10px;
+                    background   : #ededed;
+                  }
+                </style>
+                <div class="open-email-content webkit webkit-1">
                   <div class="mail-header">
                     <div class="mail-title">
                       <h4>截取第一段中文</h4>
@@ -99,15 +126,16 @@
                       <div class="mail-author">
                         <!----<img src="../../assets/images/avatars/profile-image.png" alt=""> --> 
                         <div class="mail-author-info"><span class="mail-author-name">light come :) <br/>
-                          </span><span class="mail-author-address" style="cursor:pointer;">https://blog.taoistcore.com/2021/12/09/hello/</span></div>
+                          </span><span class="mail-author-address" style="cursor:pointer;" id="server_url">https://blog.taoistcore.com/2021/12/09/hello/</span></div>
                       </div>
-                      <div class="mail-other-info"><span>2022-01-18 17:47:08</span></div>
+                      <div class="mail-other-info" style="font-size: 12px;"><span>2022-01-18 17:47:08</span></div>
                     </div>
                   </div>
                   <div class="mail-text"  id="editormd-view" style="border-bottom: 1px solid #eaecf3;">
                     <textarea style="display:none;" name="editormd-markdown-doc">###Hello world!</textarea>       
                   </div>
-                  <div class="mail-attachment"><span class="attachment-info"><i class="fas fa-paperclip m-r-xxs"></i>文件名称 - <a id="Download" href="">Download</a></span>
+                  <div class="mail-attachment"><span class="attachment-info">
+                    <i class="fas fa-paperclip m-r-xxs"></i>文件 - <a id="Download" href="">Download</a></span>
                     <div class="mail-attachment-files">
 
                       <div class="card">
