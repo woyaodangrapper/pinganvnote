@@ -1,4 +1,5 @@
 var testEditor;
+var Text_Synchronization = false
 var debug = false
 var uri = debug ? "http://localhost:5000/" : "https://api.taoistcore.com/"
 init_js()
@@ -54,8 +55,31 @@ function init_js() {
                   //this.width("100%");
                   //this.height(480);
                   //this.resize("100%", 640);
+
+                  runtimeMessageProcessing({testEditor:{
+                    "txt": testEditor.getMarkdown(),
+                    keyup:true,
+                  }},function () {
+                    setInterval(() => {
+                      if(Text_Synchronization){
+                        chrome.storage.sync.get(["testEditor"], function (data) {
+                          if (data.testEditor != null&&data.testEditor.keyup) {
+                            if(testEditor.getMarkdown() !== data.testEditor.txt){
+                              testEditor.setMarkdown(data.testEditor.txt)
+                    
+                              // console.log(testEditor.getMarkdown())
+                              // console.log(data.testEditor)
+                            }
+                          }
+                        });
+                      }
+                    }, 1000);
+                  })
               }
           });
+
+
+        
       });
       
       JQX("#goto-line-btn").bind("click", function(){
@@ -126,25 +150,22 @@ function init_js() {
     window.postMessage({cmd: 'message', data: data}, '*');
   }
 
-  // 通过DOM事件发送消息给content-script
-  var customEvent = document.createEvent('Event');
-  customEvent.initEvent('myCustomEvent', true, true);
-  // 通过事件发送消息给content-script
-  function sendMessageToContentScriptByEvent(data) {
-    data = data || '你好，我是大班-script!';
-    var hiddenDiv = document.getElementById('myCustomEventDiv');
-    hiddenDiv.innerText = data
-    hiddenDiv.dispatchEvent(customEvent);
-  }
-  window.sendMessageToContentScriptByEvent = sendMessageToContentScriptByEvent;
-
+ 
   (function () {
     var script = document.createElement("script");
     script.type = "text/javascript";
     script.src  = "/assets/js/humane.min.js";
     document.getElementsByTagName("head")[0].appendChild(script);
+
   })();
 
+
+  document.addEventListener("keyup", function (e) {
+      runtimeMessageProcessing({testEditor:{
+        "txt": testEditor.getMarkdown(),
+        keyup:true,
+      }})
+  });
   document.addEventListener("keydown", function (e) {
     if(e.ctrlKey && e.keyCode==83 ){
       window.event.returnValue = false
@@ -153,12 +174,13 @@ function init_js() {
     let overview_name = "大班随手笔记-每天一篇文章，TS-艾略特为你折腰!"
       chrome.storage.sync.get(["overview_txt"], function (data) {
         if(data.overview_txt!=null&&data.overview_txt._config === 999){
+          console.log(data.overview_txt._txt)
           overview_name = data.overview_txt._txt
           post(overview_name)
         }
       });
-
     function post(name) {
+
         var settings = {
           "url": uri + "WeatherForecast/set/md",
           "method": "POST",
@@ -188,12 +210,14 @@ function init_js() {
     }
     }
 
-    function runtimeMessageProcessing(data) {
-      chrome.storage.sync.set(data, function () {
-        console.log("保存成功！");
-      });
-    }
+
 
 
   });
+  function runtimeMessageProcessing(data,e) {
+    chrome.storage.sync.set(data, function () {
+      if(e)e()
+      // console.log("保存成功！",data);
+    });
+  }
 }

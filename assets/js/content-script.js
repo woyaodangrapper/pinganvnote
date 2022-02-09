@@ -1,97 +1,105 @@
 (function () {
-  document.addEventListener("DOMContentLoaded", init_md);
-  function init_md() {
+
+  var Text_Synchronization = false
+
+
+  var _narrow = `
+  JQX(".chrome-plugin-panel").css('display','block');
+
+
+  JQX(".overview-logo").css('display','block');
+  JQX("#overview-div").css({left:'11px'});
+  JQX("#overview-div").css({top:'11px'});
+  JQX("#overview-div").css({height:'17px'});
   
-
-    if (window.name !== "iframeName" && window.parent == window) {
-      console.log("\n %c 大班164 v0.1.0 欢迎主人记笔记哦~ 主人么么哒~ %c https://github.com/light-come/Chrome-Big \n", "color: #fadfa3; background: #030307; padding:5px 0;", "background: #fadfa3; padding:5px 0;");
-      addCustomjsText(`
-      // 通过DOM事件发送消息给content-script
-      var customEvent = document.createEvent('Event');
-      customEvent.initEvent('myCustomEvent', true, true);
-      // 通过事件发送消息给content-script
-      function sendMessageToContentScriptByEvent(data) {
-        data = data || '你好，我是大班-script!';
-        var hiddenDiv = document.getElementById('myCustomEventDiv');
-        hiddenDiv.innerText = data
-        hiddenDiv.dispatchEvent(customEvent);
-      }
-      window.sendMessageToContentScriptByEvent = sendMessageToContentScriptByEvent;
-
-      `);
-      var _narrow = `
-      JQX(".chrome-plugin-panel").css('display','block');
-
-
-      JQX(".overview-logo").css('display','block');
-      JQX("#overview-div").css({left:'11px'});
-      JQX("#overview-div").css({top:'11px'});
-      JQX("#overview-div").css({height:'17px'});
-      
-      JQX("#overview-div").css({width:'100px'})
+  JQX("#overview-div").css({width:'100px'})
+  JQX(".overview-narrow").css('display','none');
+  JQX(".overview-enlarge").css('display','block');
+  JQX("#overview-div").css({ right: "auto"})
+  JQX(".iframe_editormd").css('display','none');
+  JQX("#overview_title").css("display", "none");
+  JQX("#badge_bg_secondary_new").css("display", "none");
+  
+  `;
+  var narrow = `
+    JQX(".overview-logo").css('display','block');
+    JQX("#overview-div").animate({left:'11px'},100,"linear",function(){});
+    JQX("#overview-div").animate({top:'11px'},100,"linear",function(){});
+    JQX("#overview-div").animate({height:'17px'},100,"linear",function(){});
+    
+    JQX("#overview-div").animate({width:'100px'},100,"linear",function(){
       JQX(".overview-narrow").css('display','none');
       JQX(".overview-enlarge").css('display','block');
       JQX("#overview-div").css({ right: "auto"})
       JQX(".iframe_editormd").css('display','none');
       JQX("#overview_title").css("display", "none");
       JQX("#badge_bg_secondary_new").css("display", "none");
+    });
+    
+  `;
+
+  var _enlarge = `
+    JQX(".chrome-plugin-panel").css('display','block');
+
+    JQX(".overview-logo").css('display','none');
+    JQX("#overview-div").css({right:'0px'});
+    JQX("#overview-div").css({ bottom: "auto"})
+    JQX("#overview-div").css({ left: "0px"})
+    JQX("#overview-div").css({top:'61px'});
+
+    JQX("#overview-div").css({height:'85%'});
+    JQX("#overview-div").css({width:'94%'})
+    JQX(".overview-narrow").css('display','block');
+    JQX(".overview-enlarge").css('display','none');
+    JQX(".iframe_editormd").css('display','block');
+    JQX("#overview_title").css("display", "block");
+    JQX("#badge_bg_secondary_new").css("display", "block");
+  `;
+  var enlarge = `
+    JQX(".overview-logo").css('display','none');
+    JQX("#overview-div").animate({right:'0px'},100,"linear",function(){
+      JQX("#overview-div").css({ bottom: "auto"})
+      JQX("#overview-div").css({ left: "0px"})
+    });
+  
+    JQX("#overview-div").animate({top:'61px'},100,"linear",function(){
+    });
+
+    JQX("#overview-div").animate({height:'85%'},100,"linear",function(){
       
-      `;
-      var narrow = `
-        JQX(".overview-logo").css('display','block');
-        JQX("#overview-div").animate({left:'11px'},100,"linear",function(){});
-        JQX("#overview-div").animate({top:'11px'},100,"linear",function(){});
-        JQX("#overview-div").animate({height:'17px'},100,"linear",function(){});
-        
-        JQX("#overview-div").animate({width:'100px'},100,"linear",function(){
-          JQX(".overview-narrow").css('display','none');
-          JQX(".overview-enlarge").css('display','block');
-          JQX("#overview-div").css({ right: "auto"})
-          JQX(".iframe_editormd").css('display','none');
-          JQX("#overview_title").css("display", "none");
-          JQX("#badge_bg_secondary_new").css("display", "none");
-        });
-        
-      `;
+    });
+    JQX("#overview-div").animate({width:'94%'},100,"linear",function(){
+      JQX(".overview-narrow").css('display','block');
+      JQX(".overview-enlarge").css('display','none');
+      JQX(".iframe_editormd").css('display','block');
+      JQX("#overview_title").css("display", "block");
+      JQX("#badge_bg_secondary_new").css("display", "block");
+    });
+  `;
+  var debug = false;
+  var uri = debug ? "http://localhost:5000/" : "https://api.taoistcore.com/";
 
-      var _enlarge = `
-        JQX(".chrome-plugin-panel").css('display','block');
+  document.addEventListener("DOMContentLoaded", init_md);
+  function init_md() {
+    if (window.name !== "iframeName" && window.parent == window) {
+      console.log("\n %c 大班164 v0.1.0 欢迎主人记笔记哦~ 主人么么哒~ %c https://github.com/light-come/Chrome-Big \n", "color: #fadfa3; background: #030307; padding:5px 0;", "background: #fadfa3; padding:5px 0;");
+      addCustomjsText(`
+        // 通过DOM事件发送消息给content-script
 
-        JQX(".overview-logo").css('display','none');
-        JQX("#overview-div").css({right:'0px'});
-        JQX("#overview-div").css({ bottom: "auto"})
-        JQX("#overview-div").css({ left: "0px"})
-        JQX("#overview-div").css({top:'61px'});
+        if(!window.sendMessageToContentScriptByEvent){
+          var customEvent = document.createEvent('Event');
+          customEvent.initEvent('myCustomEvent', true, true);
+          // 通过事件发送消息给content-script
+          function sendMessageToContentScriptByEvent(data) {
+            data = data || '你好，我是大班-script!';
+            var hiddenDiv = document.getElementById('myCustomEventDiv');
+            hiddenDiv.innerText = data
+            hiddenDiv.dispatchEvent(customEvent);
+          }
+          window.sendMessageToContentScriptByEvent = sendMessageToContentScriptByEvent;
+        }
+      `);
 
-        JQX("#overview-div").css({height:'85%'});
-        JQX("#overview-div").css({width:'94%'})
-        JQX(".overview-narrow").css('display','block');
-        JQX(".overview-enlarge").css('display','none');
-        JQX(".iframe_editormd").css('display','block');
-        JQX("#overview_title").css("display", "block");
-        JQX("#badge_bg_secondary_new").css("display", "block");
-      `;
-      var enlarge = `
-        JQX(".overview-logo").css('display','none');
-        JQX("#overview-div").animate({right:'0px'},100,"linear",function(){
-          JQX("#overview-div").css({ bottom: "auto"})
-          JQX("#overview-div").css({ left: "0px"})
-        });
-      
-        JQX("#overview-div").animate({top:'61px'},100,"linear",function(){
-        });
-
-        JQX("#overview-div").animate({height:'85%'},100,"linear",function(){
-          
-        });
-        JQX("#overview-div").animate({width:'94%'},100,"linear",function(){
-          JQX(".overview-narrow").css('display','block');
-          JQX(".overview-enlarge").css('display','none');
-          JQX(".iframe_editormd").css('display','block');
-          JQX("#overview_title").css("display", "block");
-          JQX("#badge_bg_secondary_new").css("display", "block");
-        });
-      `;
       injectCustomJs("/assets/js/jquery-3.6.0.min.js", function () {
         addCustomjsText(
           `JQX(".overview-close").click(function () {
@@ -117,11 +125,11 @@
         addCustomjsText(`
           JQX(function () {
             //获取class为caname的元素
+            sendMessageToContentScriptByEvent(JSON.stringify({idN : "overview_txt","_config":999,_txt:JQX("#overview_title").html()}))
             JQX("#overview_title").click(function () {
-              var td = JQX(this);
-              var txt = td.text();
+              var txt = JQX("#overview_title").html();
               var input = JQX("<input style='text-align:center;font-size: 1.2em; width: 100%;padding: 7px;border-radius: 25px;color: #171717;line-height: 0;' class='title'  type='text'value='" + txt + "'/>");
-              td.html(input);
+              JQX("#overview_title").html(input);
               input.click(function () {
                 return false;
               });
@@ -132,51 +140,23 @@
                 var newtxt = JQX(this).val();
                 //判断文本有没有修改
                 if (newtxt != txt) {
-                  td.html(newtxt);
+                  JQX("#overview_title").html(newtxt);
                 } else {
-                  td.html(newtxt);
+                  JQX("#overview_title").html(newtxt);
                 }
                 sendMessageToContentScriptByEvent(JSON.stringify({idN : "overview_txt","_config":999,_txt:newtxt}))
               });
             });
           });
         `);
-        var overview_webkit_state = undefined;
-        if (chrome.overview_webkit_setInterval) {
-          clearInterval(chrome.overview_webkit_setInterval);
-        }
-        chrome.overview_webkit_setInterval = setInterval(() => {
-          try {
-            chrome.storage.sync.get(["overview_webkit"], function (data) {
-              if (data.overview_webkit != null && overview_webkit_state != data.overview_webkit._config) {
-                overview_webkit_state = data.overview_webkit._config;
-                if (JQX("#overview-div").length === 0 && data.overview_webkit._config !== 2) {
-                  init_md();
-                }
-                addCustomjsText(data.overview_webkit._config == 1 ? _narrow : _enlarge);
-
-                if (data.overview_webkit._config === 2) {
-                  addCustomjsText('JQX("#overview-div").remove();');
-                }
-              }
-            });
-          } catch (error) {}
-        }, 500);
       });
 
-      
       // 注入自定义JS
       initCustomPanel();
-     
+
       initCustomEventListen();
-   
+
       // <script src='humane.js'></script>
-      // injectCustomCss("/assets/css/themes/bigbox.css")
-      // injectCustomCss("/assets/css/themes/boldlight.css")
-      // injectCustomCss("/assets/css/themes/jackedup.css")
-      // injectCustomCss("/assets/css/themes/libnotify.css")
-      // injectCustomCss("/assets/css/themes/original.css")
-      // injectCustomCss("/assets/css/themes/flatty.css")
 
       // addCustomjsText(`
 
@@ -186,24 +166,53 @@
       //     script.src  = "https://cdn.bootcdn.net/ajax/libs/humane-js/2.6.0/humane.min.js";
       //     document.getElementsByTagName("head")[0].appendChild(script);
       //   })();
-        
-      // `)
-      // injectCustomJs("/assets/js/humane.min.js",function () {
-      //   addCustomjsText(`
-      //     humane.baseCls="humane-"+"bigbox"
-      //     humane.log("Welcome Test")
-      //   `)
-      // },true);
 
+      // `)
     }
   }
+  var overview_webkit_state = undefined;
+  if (chrome.overview_webkit_setInterval) {
+    clearInterval(chrome.overview_webkit_setInterval);
+  }
+  chrome.overview_webkit_setInterval = setInterval(() => {
+    try {
+      chrome.storage.sync.get(["overview_webkit"], function (data) {
+        if (data.overview_webkit != null && overview_webkit_state != data.overview_webkit._config) {
+          overview_webkit_state = data.overview_webkit._config;
+          if (JQX("#overview-div").length === 0 && data.overview_webkit._config !== 2) {
+            init_md();
+          }
+          addCustomjsText(data.overview_webkit._config == 1 ? _narrow : _enlarge);
 
+          if (data.overview_webkit._config === 2) {
+            addCustomjsText('JQX("#overview-div").remove();');
+          }
+        }
+      });
+
+      if(Text_Synchronization){
+        chrome.storage.sync.get(["overview_txt"], function (data) {
+          if (data.overview_txt._txt != null && JQX("#overview_title").html() && data.overview_txt._txt != JQX("#overview_title").html()) {
+            // console.log(data.overview_txt._txt,JQX("#overview_title").html())
+            if (Cts != "大班随手笔记-每天一篇文章，TS-艾略特为你折腰!") {
+              var Cts = JQX("#overview_title").html();
+              if (Cts.indexOf(`<input style="text-align:center;font-size: 1.2em; width: 100%;padding: 7px;border-radius: 25px;color: #171717;line-height: 0;" class="title" type="text"`) >= 0) {
+              } else {
+                JQX("#overview_title").html(data.overview_txt._txt);
+              }
+            }
+          }
+        });
+      }
+    
+    } catch (error) {}
+  }, 500);
   // function Document_processing_Key(){
   //   if(event.ctrlKey && window.event.keyCode==83 ){
   //     alert("ctrl +s 组合键");
   //   }
   // }
-  
+
   function initCustomPanel() {
     ///editor.md/examples/full.html
     var panel = document.createElement("div");
@@ -460,7 +469,9 @@
           name="iframeName"
           ref="core_content"
           title="core_content"
-          src='` + chrome.extension.getURL("/editor.md/examples/full.html") + `'
+          src='` +
+      chrome.extension.getURL("/editor.md/examples/full.html") +
+      `'
           sandbox="allow-same-origin allow-scripts allow-popups allow-forms allow-downloads"
           scrolling="auto"
         ></iframe>
@@ -468,11 +479,12 @@
 
       </div>
     
-    
       `;
 
     send();
-    document.body.appendChild(panel);
+    if (!JQX("#overview-div")[0]) {
+      document.body.appendChild(panel);
+    }
   }
   // 向页面注入JS
   function addCustomjsText(jsText, e) {
@@ -481,13 +493,16 @@
     temp.text = jsText;
     temp.onload = function () {
       // 放在页面不好看，执行完后移除掉
-      // this.parentNode.removeChild(this);
       if (e) e();
     };
     document.body.appendChild(temp);
+
+    setTimeout(() => {
+      document.body.removeChild(temp);
+    }, 1000);
   }
   // 向页面注入JS
-  function injectCustomJs(jsPath, e,remove) {
+  function injectCustomJs(jsPath, e, remove) {
     var temp = document.createElement("script");
     temp.setAttribute("type", "text/javascript");
     // 获得的地址类似：chrome-extension://ihcokhadfjfchaeagdoclpnjdiokfakg/js/inject.js
@@ -495,25 +510,28 @@
     temp.onload = function () {
       if (e) e();
       // 放在页面不好看，执行完后移除掉
-      if(!remove)
-        this.parentNode.removeChild(this);
+      if (!remove) this.parentNode.removeChild(this);
     };
     document.body.appendChild(temp);
   }
   // 向页面注入css
-  function injectCustomCss(cssPath, e) {
+  function injectCustomCss(cssPath, e, remove) {
     var temp = document.createElement("link");
     temp.setAttribute("rel", "stylesheet");
     temp.href = chrome.extension.getURL(cssPath);
     temp.onload = function () {
-      this.parentNode.removeChild(this);
+      if (e) e();
+      if (!remove)
+        setTimeout(() => {
+          this.parentNode.removeChild(this);
+        }, 5000);
     };
     document.body.appendChild(temp);
   }
 
   function send(msg) {
     chrome.runtime.sendMessage({ greeting: msg ?? "mdinit" }, function (response) {
-      console.log("收到来自后台的回复：" + response);
+      // console.log("收到来自后台的回复：" + response);
     });
   }
 
@@ -528,6 +546,28 @@
       });
     }
   });
+
+  //向页面发送弹框
+  function html_log(txt) {
+    injectCustomCss(
+      "/assets/css/themes/bigbox.css",
+      function () {
+        injectCustomJs(
+          "/assets/js/humane.min.js",
+          function () {
+            addCustomjsText(txt);
+          },
+          false
+        );
+      },
+      false
+    );
+    // injectCustomCss("/assets/css/themes/boldlight.css")
+    // injectCustomCss("/assets/css/themes/jackedup.css")
+    // injectCustomCss("/assets/css/themes/libnotify.css")
+    // injectCustomCss("/assets/css/themes/original.css")
+    // injectCustomCss("/assets/css/themes/flatty.css")
+  }
   //处理事件
   function runtimeMessageProcessing(data) {
     if (data.question.overview_webkit) {
@@ -536,11 +576,84 @@
         init_md();
       });
     }
-    if(data.question.overview_webkit_update != null && data.question.overview_webkit_update._config == 1){
-      console.log("开始同步文章")
+    if (data.question.overview_webkit_get_length != null && data.question.overview_webkit_get_length._config == 1) {
+      let url = uri + "WeatherForecast/get/md";
+      var settings = {
+        url: url,
+        method: "GET",
+        timeout: 0,
+        async: false,
+      };
+      JQX.ajax(settings).done(function (response) {
+        html_log(`
+        humane.baseCls="humane-"+"bigbox"
+        humane.log("${response.fileList.length}")
+        `);
+      });
     }
+    if (data.question.overview_webkit_update != null && data.question.overview_webkit_update._config == 1) {
+      console.log("开始同步文章");
+      let url = uri + "WeatherForecast/get/md";
+      var settings = {
+        url: url,
+        method: "GET",
+        timeout: 0,
+        async: false,
+      };
+      var arr = [];
+      JQX.ajax(settings).done(function (response) {
+        arr = response.fileList;
+      });
+      console.log(arr);
+      if (arr.length <= 0) {
+        html_log(`
+        humane.baseCls="humane-"+"bigbox"
+        humane.log("当前没有笔记需要同步")
+        `);
+      }
+      for (let index = 0; index < arr.length; index++) {
+        const element = arr[index];
+        var id = element.id;
 
+        var blogs_state = false;
+        if (index >= arr.length - 1) blogs_state = true;
 
+        let url = uri + "WeatherForecast/blog/post?blogs_state=" + blogs_state + "&id=" + id;
+        var settings = {
+          url: url,
+          method: "POST",
+          timeout: 0,
+        };
+
+        var ajax = JQX.ajax(settings); //,"pointer-events":"none"
+
+        ajax.done(function (response) {
+          if (blogs_state) {
+            html_log(`
+              humane.baseCls="humane-"+"bigbox"
+              humane.log("同步成功${String(index + 1)}个")
+            `);
+
+            setTimeout(() => {
+              // location.reload();
+            }, 3000);
+          }
+        });
+
+        ajax.catch(function (jqXHR, textStatus, errorThrown) {
+          /*错误信息处理*/
+          if (blogs_state) {
+            html_log(`
+              humane.baseCls="humane-"+"bigbox"
+              humane.log("同步失败")
+            `);
+            setTimeout(() => {
+              location.reload();
+            }, 3000);
+          }
+        });
+      }
+    }
   }
 
   // window.addEventListener("message", function(e)
@@ -555,41 +668,48 @@
   // }, false);
 
   function initCustomEventListen() {
-    var hiddenDiv = document.getElementById("myCustomEventDiv");
-    if (!hiddenDiv) {
-      hiddenDiv = document.createElement("div");
-      hiddenDiv.style.display = "none";
-      hiddenDiv.id = "myCustomEventDiv";
-      document.body.appendChild(hiddenDiv);
-    }
-    hiddenDiv.addEventListener("myCustomEvent", function () {
-      if(!hiddenDiv){
-        return
+    var hiddenDiv = document.getElementById("myCustomEventDiv") ?? undefined;
+
+    var myFunction = function () {
+      if (!hiddenDiv) {
+        return;
       }
       var eventData = hiddenDiv.innerText;
       var data = JSON.parse(eventData);
       console.log("收到自定义事件：", data);
       switch (data.idN) {
         case "overview":
-          if (data._config != undefined) {
+          if (data && data._config != undefined) {
             chrome.storage.sync.set({ overview_webkit: data }, function () {
-              console.log("保存成功！");
+              console.log("保存成功！", data);
             });
           }
           break;
         case "overview_txt":
-          if (data._config != undefined) {
+          if (data && data._config != undefined) {
             chrome.storage.sync.set({ overview_txt: data }, function () {
-              console.log("保存成功！");
+              console.log("保存成功！", data);
             });
           }
           break;
         default:
           break;
       }
+    };
 
-     
+    if (!hiddenDiv) {
+      hiddenDiv = document.createElement("div");
+      hiddenDiv.style.display = "none";
+      hiddenDiv.id = "myCustomEventDiv";
+      document.body.appendChild(hiddenDiv);
+      hiddenDiv.removeEventListener("myCustomEvent", myFunction);
+      hiddenDiv.addEventListener("myCustomEvent", myFunction);
+    }
 
-    });
+    // document.getElementById("myCustomEvent_Div").removeEventListener("mousemove", myFunction);
+    // document.getElementById("myCustomEvent_Div").addEventListener("mousemove", myFunction);
+    // hiddenDiv.removeEventListener("myCustomEvent", myFunction);
+
+    // hiddenDiv.addEventListener("myCustomEvent", myFunction);
   }
 })();

@@ -48,7 +48,7 @@ function init_js() {
               send({ overview_webkit: { idN: "overview", _config: 0 } })
             },
           });
-
+         
           chrome.contextMenus.create({
             id:"dabanaiguan_update",
             title: "同步文章",
@@ -56,6 +56,15 @@ function init_js() {
               send({ overview_webkit_update: { idN: "overview", _config: 1 } })
             },
           });
+
+          chrome.contextMenus.create({
+            id:"dabanaiguan_get_length",
+            title: "等待同步数量",
+            onclick: function () {
+              send({ overview_webkit_get_length: { idN: "overview", _config: 1 } })
+            },
+          });
+
           chrome.dabanaiguan_state = true;
         }
         
@@ -126,7 +135,7 @@ function init_js() {
       if(data.greeting === "mdinit"){
         send_state = true
       }
-
+ 
       sendResponse('我是后台，我已收到你的消息：' + JSON.stringify(request));
 
   });
@@ -316,7 +325,7 @@ function init_js() {
           /*错误信息处理*/
           if(blogs_state){
             humane.baseCls="humane-"+"bigbox"
-            humane.log("删除失败")
+            humane.log("同步失败")
 
             setTimeout(() => {
               location.reload();

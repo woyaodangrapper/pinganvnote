@@ -33,6 +33,11 @@ namespace blog_generated_articles.Controllers
         [HttpPost, Route("set/md")]
         public async Task<IActionResult> MD_IF(set_md options)
         {
+
+            options.txt = "---\r\n" +
+            "title: " + options.name+
+            "\r\n--- \r\n" + options.txt;
+
             try
             {
                 System.Security.Cryptography.MD5 md5 = new System.Security.Cryptography.MD5CryptoServiceProvider();
@@ -148,9 +153,9 @@ namespace blog_generated_articles.Controllers
                         ,
                         volume + ":"
                         ,
-                        "hexo clean"
+                        "npx hexo clean"
                          ,
-                        " hexo generate"
+                        " npx hexo generate"
                     });
                 return (new
                 {
@@ -255,9 +260,9 @@ namespace blog_generated_articles.Controllers
                         ,
                         volume + ":"
                         ,
-                        "hexo clean"
+                        "npx hexo clean"
                          ,
-                        "hexo generate"
+                        "npx hexo generate"
                     });
                     return Ok(task.Result);
                 }
@@ -350,15 +355,18 @@ namespace blog_generated_articles.Controllers
 
                         var fileName = $"{name + ".md"}";//DateTime.Now.ToString("yyyyMMddHHmmss") + 
                         var filePath = Path.Combine(fileFolder, fileName);
-                        var backupPath = Path.Combine(fileBackup, fileName);
+                        var backupPath = Path.Combine(fileBackup, $"{(DateTime.Now.ToUniversalTime().Ticks - 621355968000000000) / 10000}-" + fileName);
                         using (var stream = new FileStream(backupPath, FileMode.Create))
                         {
                             await item.CopyToAsync(stream);
+                            
                         }
+                        item = streams = new MemoryStream(array);//convert stream 2 string      
                         using (var stream = new FileStream(filePath, FileMode.Create))
                         {
                             await item.CopyToAsync(stream);
                         }
+
                     }
 
                 }
