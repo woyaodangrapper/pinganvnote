@@ -1,0 +1,45 @@
+/* Write your custom CSS here */
+body {
+  font-family: "微软雅黑";
+}
+
+@font-face {
+  font-family: WangXizhi;
+  src: url("depend/fonts/WangXizhi.ttf");
+}
+.ancient-poems{
+  font-family: 'WangXizhi';
+  font-size: 1.2em;
+}
+.chrome-plugin-panel {
+  z-index: 9999;
+  width: 86%;
+  height: 86%;
+  backdrop-filter: blur(20px);
+  bottom: 10px;
+  background: #1a1a17;
+  padding: 10px;
+  box-shadow: 0px 0px 10px #1a1a17;
+  border-radius: 3px;
+  color: white;
+  display: none;
+
+  top: 61px;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  position: fixed;
+  -webkit-box-sizing: initial;
+  /* overflow:hidden; */
+}
+
+.col-sm-1 {
+  top: 2px;
+  right: 10px;
+  position: absolute;
+  z-index: 1;
+  color: rgb(32, 32, 32);
+}
+.ppopup-background {
+  width: 248px;
+}
